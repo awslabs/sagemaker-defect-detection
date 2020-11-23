@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - start=$SECONDS
+      - chmod +x ./scripts/build.sh && ./scripts/build.sh $SOLUTION_NAME $BUILD_OUTPUT_BUCKET $BUILD_OUTPUT_REGION
+      - echo "Build took $(($SECONDS - start)) seconds to complete"
+artifacts:
+  files:
+    - cloudformation/**/*
+    - src/**/*
+    - tests/**/*
+    - scripts/**/**
+    - notebooks/**/*
+    - docs/**/*
+    - README.md
+    - .viperlightignore
+    - .viperlightrc
+    - setup.py
+    - requirements.in
+    - requirements.txt
+    - setup.cfg
+    - MANIFEST.in
+    - pyproject.toml
+    - buildspec.yaml

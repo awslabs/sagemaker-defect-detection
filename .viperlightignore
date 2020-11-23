@@ -1,0 +1,8 @@
+^dist/
+docs/launch.svg:4
+CODE_OF_CONDUCT.md:4
+CONTRIBUTING.md:50
+build/solution-assistant.zip
+cloudformation/defect-detection-endpoint.yaml:42
+cloudformation/defect-detection-permissions.yaml:114
+docs/NEU_surface_defect_database.pdf

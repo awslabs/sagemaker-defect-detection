@@ -1,0 +1,16 @@
+*.egg-info
+__pycache__
+.vscode
+.mypy*
+.ipynb*
+.pytest*
+*output
+*logs*
+*checkpoints*
+*.ckpt*
+*.tar.gz
+dist
+build
+site-packages
+stack_outputs.json
+*neu*

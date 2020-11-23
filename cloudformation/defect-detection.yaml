@@ -1,0 +1,233 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "(SA0015) - sagemaker-defect-detection:
+  Solution for training and deploying deep learning models for defect detection in images using Amazon SageMaker.
+  Version 1"
+
+Parameters:
+  SolutionPrefix:
+    Type: String
+    Default: "sagemaker-soln-dfd-"
+    Description: |
+      Used to name resources created as part of this stack (and inside nested stacks too).
+      Can be the same as the stack name used by AWS CloudFormation, but this field has extra
+      constraints because it's used to name resources with restrictions (e.g. Amazon S3 bucket
+      names cannot contain capital letters).
+    AllowedPattern: '^sagemaker-soln-dfd[a-z0-9\-]{1,20}$'
+    ConstraintDescription: |
+      Only allowed to use lowercase letters, hyphens and/or numbers.
+      Should also start with 'sagemaker-soln-dfd-' for permission management.
+
+  SolutionName:
+    Description: |
+      Prefix for the solution name. Needs to be 'sagemaker-defect-detection'
+      or begin with  'sagemaker-defect-detection-' followed by a set of letters and hyphens.
+      Used to specify a particular directory on S3, that can correspond to a development branch.
+    Type: String
+    Default: "sagemaker-defect-detection"
+    AllowedPattern: '^sagemaker-defect-detection-?[a-z\-]*$'
+
+  IamRole:
+    Type: String
+    Default: ""
+    Description: |
+      IAM Role that will be attached to the resources created by this CloudFormation to grant them permissions to
+      perform their required functions. This role should allow SageMaker and Lambda perform the required actions like
+      creating training jobs and processing jobs. If left blank, the template will attempt to create a role for you.
+      This can cause a stack creation error if you don't have privileges to create new roles.
+
+  SageMakerNotebookInstanceType:
+    Description: SageMaker notebook instance type.
+    Type: String
+    Default: "ml.t3.medium"
+
+  CreateSageMakerNotebookInstance:
+    Description: Whether to launch sagemaker notebook instance
+    Type: String
+    AllowedValues:
+      - "true"
+      - "false"
+    Default: "true"
+
+  StackVersion:
+    Description: |
+      CloudFormation Stack version.
+      Use "release" version unless you are customizing the
+      CloudFormation templates and the solution artifacts in S3 bucket
+    Type: String
+    Default: release
+    AllowedValues:
+      - release
+      - dev
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: "Solution Configuration"
+        Parameters:
+          - SolutionPrefix
+          - SolutionName
+          - IamRole
+      - Label:
+          default: "Advanced Configuration"
+        Parameters:
+          - SageMakerNotebookInstanceType
+          - CreateSageMakerNotebookInstance
+
+    ParameterLabels:
+      SolutionPrefix:
+        default: "Solution Resources Name Prefix"
+      SolutionName:
+        default: "Name of the solution"
+      IamRole:
+        default: "Solution IAM Role Arn"
+      CreateSageMakerNotebookInstance:
+        default: "Launch SageMaker Notebook Instance"
+      SageMakerNotebookInstanceType:
+        default: "SageMaker Notebook Instance Type"
+      StackVersion:
+        default: "Solution Stack Version"
+
+Conditions:
+  CreateClassicSageMakerResources:
+    !Equals [!Ref CreateSageMakerNotebookInstance, "true"]
+  CreateCustomSolutionRole: !Equals [!Ref IamRole, ""]
+
+Mappings:
+  S3:
+    release:
+      BucketPrefix: "sagemaker-solutions-prod"
+    dev:
+      BucketPrefix: "sagemaker-solutions-devo"
+
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: "Retain"
+    Properties:
+      BucketName: !Sub "${SolutionPrefix}-${AWS::AccountId}-${AWS::Region}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W35
+            reason: Configuring logging requires supplying an existing customer S3 bucket to store logs.
+          - id: W51
+            reason: Default access policy is sufficient.
+
+  SageMakerPermissionsStack:
+    Type: "AWS::CloudFormation::Stack"
+    Condition: CreateCustomSolutionRole
+    Properties:
+      TemplateURL: !Sub
+        - "https://${SolutionRefBucketBase}-${AWS::Region}.s3.amazonaws.com/${SolutionName}/cloudformation/defect-detection-permissions.yaml"
+        - SolutionRefBucketBase:
+            !FindInMap [S3, !Ref StackVersion, BucketPrefix]
+      Parameters:
+        SolutionPrefix: !Ref SolutionPrefix
+        SolutionName: !Ref SolutionName
+        S3BucketName: !Ref S3Bucket
+        StackVersion: !Ref StackVersion
+
+  SageMakerStack:
+    Type: "AWS::CloudFormation::Stack"
+    Condition: CreateClassicSageMakerResources
+    Properties:
+      TemplateURL: !Sub
+        - "https://${SolutionRefBucketBase}-${AWS::Region}.s3.amazonaws.com/${SolutionName}/cloudformation/defect-detection-sagemaker-notebook-instance.yaml"
+        - SolutionRefBucketBase:
+            !FindInMap [S3, !Ref StackVersion, BucketPrefix]
+      Parameters:
+        SolutionPrefix: !Ref SolutionPrefix
+        SolutionName: !Ref SolutionName
+        SolutionS3Bucket: !Ref S3Bucket
+        SageMakerIAMRoleArn:
+          !If [
+            CreateCustomSolutionRole,
+            !GetAtt SageMakerPermissionsStack.Outputs.SageMakerRoleArn,
+            !Ref IamRole,
+          ]
+        SageMakerNotebookInstanceType: !Ref SageMakerNotebookInstanceType
+        StackVersion: !Ref StackVersion
+
+  SolutionAssistantStack:
+    Type: "AWS::CloudFormation::Stack"
+    Properties:
+      TemplateURL: !Sub
+        - "https://${SolutionRefBucketBase}-${AWS::Region}.s3.amazonaws.com/${SolutionName}/cloudformation/solution-assistant/solution-assistant.yaml"
+        - SolutionRefBucketBase:
+            !FindInMap [S3, !Ref StackVersion, BucketPrefix]
+      Parameters:
+        SolutionPrefix: !Ref SolutionPrefix
+        SolutionName: !Ref SolutionName
+        StackName: !Ref AWS::StackName
+        S3BucketName: !Ref S3Bucket
+        SolutionsS3BucketName: !Sub
+          - "${SolutionRefBucketBase}-${AWS::Region}"
+          - SolutionRefBucketBase:
+              !FindInMap [S3, !Ref StackVersion, BucketPrefix]
+        RoleArn:
+          !If [
+            CreateCustomSolutionRole,
+            !GetAtt SageMakerPermissionsStack.Outputs.SageMakerRoleArn,
+            !Ref IamRole,
+          ]
+
+Outputs:
+  SolutionName:
+    Value: !Ref SolutionName
+
+  SourceCode:
+    Condition: CreateClassicSageMakerResources
+    Description: "Open Jupyter IDE. This authenticate you against Jupyter."
+    Value: !GetAtt SageMakerStack.Outputs.SourceCode
+
+  NotebookInstance:
+    Description: "SageMaker Notebook instance to manually orchestrate data preprocessing, model training and deploying an endpoint"
+    Value:
+      !If [
+        CreateClassicSageMakerResources,
+        !GetAtt SageMakerStack.Outputs.SageMakerNotebookInstanceSignOn,
+        "",
+      ]
+
+  AccountID:
+    Description: "AWS Account ID to be passed downstream to the notebook instance"
+    Value: !Ref AWS::AccountId
+
+  AWSRegion:
+    Description: "AWS Region to be passed downstream to the notebook instance"
+    Value: !Ref AWS::Region
+
+  IamRole:
+    Description: "Arn of SageMaker Execution Role"
+    Value:
+      !If [
+        CreateCustomSolutionRole,
+        !GetAtt SageMakerPermissionsStack.Outputs.SageMakerRoleArn,
+        !Ref IamRole,
+      ]
+
+  SolutionPrefix:
+    Description: "Solution Prefix for naming SageMaker transient resources"
+    Value: !Ref SolutionPrefix
+
+  SolutionS3Bucket:
+    Description: "Solution S3 bucket name"
+    Value: !Ref S3Bucket
+
+  SageMakerMode:
+    Value: !If [CreateClassicSageMakerResources, "NotebookInstance", "Studio"]
+
+  StackName:
+    Value: !Ref AWS::StackName
