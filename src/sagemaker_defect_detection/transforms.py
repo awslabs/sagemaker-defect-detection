@@ -84,7 +84,11 @@ def get_augmentation(split: str) -> Callable:
                 albu.HorizontalFlip(p=PROBABILITY),
                 albu.RandomBrightness(p=PROBABILITY),
             ],
-            bbox_params=albu.BboxParams(format="pascal_voc", label_fields=["labels"], min_visibility=0.2,),
+            bbox_params=albu.BboxParams(
+                format="pascal_voc",
+                label_fields=["labels"],
+                min_visibility=0.2,
+            ),
         )
     else:
         return albu.Compose(

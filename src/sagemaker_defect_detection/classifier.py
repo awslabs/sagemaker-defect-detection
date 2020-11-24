@@ -112,19 +112,28 @@ class DDNClassification(pl.LightningModule):
 
     def train_dataloader(self):
         train_loader = DataLoader(
-            dataset=self.train_dataset, batch_size=self.batch_size, shuffle=True, num_workers=cpu_count(),
+            dataset=self.train_dataset,
+            batch_size=self.batch_size,
+            shuffle=True,
+            num_workers=cpu_count(),
         )
         return train_loader
 
     def val_dataloader(self):
         val_loader = DataLoader(
-            self.val_dataset, batch_size=self.batch_size, shuffle=False, num_workers=cpu_count() // 2,
+            self.val_dataset,
+            batch_size=self.batch_size,
+            shuffle=False,
+            num_workers=cpu_count() // 2,
         )
         return val_loader
 
     def test_dataloader(self):
         test_loader = DataLoader(
-            self.test_dataset, batch_size=self.batch_size, shuffle=False, num_workers=cpu_count(),
+            self.test_dataset,
+            batch_size=self.batch_size,
+            shuffle=False,
+            num_workers=cpu_count(),
         )
         return test_loader
 
@@ -133,29 +142,53 @@ class DDNClassification(pl.LightningModule):
         parser = ArgumentParser(parents=[parent_parser], add_help=False)
         aa = parser.add_argument
         aa(
-            "--data-path", metavar="DIR", type=str, default=os.getenv("SM_CHANNEL_TRAINING", ""),
+            "--data-path",
+            metavar="DIR",
+            type=str,
+            default=os.getenv("SM_CHANNEL_TRAINING", ""),
         )
         aa(
-            "--backbone", default="resnet34",
+            "--backbone",
+            default="resnet34",
         )
         aa(
-            "--freeze-backbone", action="store_true",
+            "--freeze-backbone",
+            action="store_true",
         )
         aa(
-            "--num-classes", default=6, type=int, metavar="N",
+            "--num-classes",
+            default=6,
+            type=int,
+            metavar="N",
         )
         aa(
-            "-b", "--batch-size", default=64, type=int, metavar="N",
+            "-b",
+            "--batch-size",
+            default=64,
+            type=int,
+            metavar="N",
         )
         aa(
-            "--lr", "--learning-rate", default=1e-3, type=float, metavar="LR", dest="learning_rate",
+            "--lr",
+            "--learning-rate",
+            default=1e-3,
+            type=float,
+            metavar="LR",
+            dest="learning_rate",
         )
         aa("--momentum", default=0.9, type=float, metavar="M", help="momentum")
         aa(
-            "--wd", "--weight-decay", default=1e-4, type=float, metavar="W", dest="weight_decay",
+            "--wd",
+            "--weight-decay",
+            default=1e-4,
+            type=float,
+            metavar="W",
+            dest="weight_decay",
         )
         aa(
-            "--seed", type=int, default=42,
+            "--seed",
+            type=int,
+            default=42,
         )
         return parser
 
