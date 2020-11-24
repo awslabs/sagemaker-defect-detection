@@ -1,5 +1,15 @@
 # Visual Inspection Automation with Amazon SageMaker
 
+<p align="center">
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/actions"><img alt="Actions Status" src="https://github.com/awslabs/sagemaker-defect-detection/workflows/Tests/badge.svg"></a>
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/blob/mainline/LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/github/license/awslabs/sagemaker-defect-detection.svg"></a>
+  <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+  <br>
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/graphs/commit-activity"><img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"></a>
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/issues/new?assignees=ehsanmok&labels=question&template=questions-or-general-feedbacks.md&title=%5BGeneral%5D"><img alt="AMA" src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg"></a>
+  <a href="https://github.com/ellerbrock/open-source-badges/"><img alt="OSS Love" src="https://badges.frapsoft.com/os/v1/open-source.png?v=103"></a>
+ </p>
+
 This solution detects product defects with an end-to-end Deep Learning workflow for quality control in manufacturing process. The solution takes input of product images and identifies defect regions with bounding boxes. In particular, this solution uses an implementation of  [An End-to-End Steel Surface Defect Detection](https://ieeexplore.ieee.org/document/8709818) on [NEU surface defect database](https://github.com/awslabs/sagemaker-defect-detection/blob/mainline/docs/NEU_surface_defect_database.pdf)(see [references](#references)) in [PyTorch](https://pytorch.org/) using [PyTorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning).
 
 
@@ -72,6 +82,26 @@ The easiest is to click on the following button to create the *AWS CloudFormatio
     <td>us-west-2</td>
     <td align="center">
       <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://sagemaker-solutions-prod-us-west-2.s3-us-west-2.amazonaws.com/sagemaker-defect-detection/cloudformation/defect-detection.yaml&stackName=sagemaker-soln-dfd-">
+        <img src="docs/launch.svg" height="35">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>US East</td>
+    <td>N. Virginia</td>
+    <td>us-east-1</td>
+    <td align="center">
+      <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://sagemaker-solutions-prod-us-east-1.s3-us-east-1.amazonaws.com/sagemaker-defect-detection/cloudformation/defect-detection.yaml&stackName=sagemaker-soln-dfd-">
+        <img src="docs/launch.svg" height="35">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>US East</td>
+    <td>Ohio</td>
+    <td>us-east-2</td>
+    <td align="center">
+      <a href="https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://sagemaker-solutions-prod-us-east-2.s3-us-east-2.amazonaws.com/sagemaker-defect-detection/cloudformation/defect-detection.yaml&stackName=sagemaker-soln-dfd-">
         <img src="docs/launch.svg" height="35">
       </a>
     </td>
