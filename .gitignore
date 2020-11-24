@@ -13,4 +13,8 @@ dist
 build
 site-packages
 stack_outputs.json
-*neu*
+
+raw_neu_det
+neu_det
+raw_neu_cls
+neu_cls
