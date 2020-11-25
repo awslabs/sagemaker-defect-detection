@@ -133,8 +133,10 @@ This solution trains a classifier on **NEU-CLS** dataset as well as a detector o
 and here are the sample detection results
 
 <p align="center">
-  <img src="docs/sample1.png" alt="sample1" width="400" height="300"/>
-  <img src="docs/sample3.png" alt="sample3" width="400" height="300"/>
+  <img src="docs/sample1.png" alt="sample1" width="600" height="300"/>
+</p>
+<p align="center">
+  <img src="docs/sample3.png" alt="sample3" width="600" height="300"/>
 </p>
 
 ## Contents
