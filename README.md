@@ -19,24 +19,7 @@ According to the [Gartner](https://www.gartner.com/smarterwithgartner/gartner-to
 
 ## What is Visual Inspection?
 
-> The **analysis of products on the production line for the purpose of Quality Control**. Visual inspection can also be used for internal and external assessment of the various equipment in a production facility such as storage tanks, pressure vessels, piping, and other equipment. <sup>[source](https://nanonets.com/blog/ai-visual-inspection/)</sup>
-
-<p align="center">
-  <img src="docs/inspection-use-cases-color.png" alt="inspection use cases" width="500" height="500">
-</p>
-
-and industries ([source](https://www.necam.com/Docs/?id=45e4e545-8503-44fd-8540-348102bf0a85))
-
-<p align="center">
-  <img src="docs/inspection-industries.png" alt="inspection use cases" width="400" height="300">
-</p>
-
-with breakdown ([source](https://www.necam.com/Docs/?id=45e4e545-8503-44fd-8540-348102bf0a85))
-
-<p align="center">
-  <img src="docs/pie.png" alt="chart" width="500" height="300">
-</p>
-
+The **analysis of products on the production line for the purpose of Quality Control**. Visual inspection can also be used for internal and external assessment of the various equipment in a production facility such as storage tanks, pressure vessels, piping, and other equipment ([source](https://nanonets.com/blog/ai-visual-inspection/)) which expands to many industries from Electronics, Medical, Food and Raw Materials.
 
 ### What are the Problems?
 
@@ -44,25 +27,14 @@ Some of the major problems are
 
 #### Human Visual Error
 
-Human visual inspection errors is a big major factor in this area. According to this [report](https://www.osti.gov/servlets/purl/1476816)
-
+**Human visual inspection error** is a major factor in this area. According to this [report](https://www.osti.gov/servlets/purl/1476816)
 
 > Most inspection tasks are much more complex and typically exhibit error rates of 20% to 30% (Drury & Fox, 1975)
 
+which directly translates to *cost*.
+#### Cost
 
-and here are some of the source and factors that contribute to errors
-
-<p align="center">
-  <img src="docs/error_factors.png" alt="human error factors" width="400" height="400">
-</p>
-
-### Cost
-
-According to some estimate, a trained quality inspector salary varies between 26K (US) - 60K per year.
-
-<p align="center">
-  <img src="docs/quality-inspector-salaries.png" alt="distribution of quality inspector salaries" width="600" height="300">
-</p>
+According to some [estimate](https://www.glassdoor.co.in/Salaries/us-quality-control-inspector-salary-SRCH_IL.0,2_IN1_KO3,28.htm), a trained quality inspector salary varies between 26K (US) - 60K per year.
 
 ## Getting Started
 
