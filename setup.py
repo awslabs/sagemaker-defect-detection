@@ -6,8 +6,8 @@ ROOT = Path(__file__).parent.resolve()
 
 long_description = (ROOT / "README.md").read_text(encoding="utf-8")
 
-dev_dependencies = ["mypy==0.781", "black==19.10b0"]
-test_dependencies = ["pytest"]
+dev_dependencies = ["pre-commit", "mypy==0.781", "black==20.8b1", "nbstripout==0.3.7", "black-nb==0.3.0"]
+test_dependencies = ["pytest>=6.0"]
 
 setup(
     name="sagemaker_defect_detection",
