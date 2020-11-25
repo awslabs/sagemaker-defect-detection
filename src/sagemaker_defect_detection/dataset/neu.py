@@ -51,6 +51,7 @@ class NEUCLS(ImageFolder):
             If unsupported split is used
         """
         super().__init__(root, **kwargs)
+        self.samples: List[Tuple[str, int]]
         self.split = split
         self.augmentation = augmentation
         self.preprocessing = preprocessing
@@ -151,12 +152,12 @@ class NEUDET(Dataset):
         return classes, class_to_idx
 
     @staticmethod
-    def _get_bboxes(ann: str) -> List[Tuple[int, int, int, int]]:
+    def _get_bboxes(ann: str) -> List[List[int]]:
         tree = ElementTree().parse(ann)
         bboxes = []
         for bndbox in tree.iterfind("object/bndbox"):
             # should subtract 1 like coco?
-            bbox = [int(bndbox.findtext(t)) - 1 for t in ("xmin", "ymin", "xmax", "ymax")]
+            bbox = [int(bndbox.findtext(t)) - 1 for t in ("xmin", "ymin", "xmax", "ymax")]  # type: ignore
             assert bbox[2] > bbox[0] and bbox[3] > bbox[1], f"box size error, given {bbox}"
             bboxes.append(bbox)
 

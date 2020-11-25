@@ -1,4 +1,4 @@
-from typing import List, Union, Tuple
+from typing import Iterable, List, Union, Tuple
 
 import numpy as np
 
@@ -49,7 +49,7 @@ def unnormalize_to_hwc(
     return image
 
 
-def visualize_bbox(img: np.ndarray, bbox: np.ndarray, class_name: str, color, thickness: int = 2) -> None:
+def visualize_bbox(img: np.ndarray, bbox: np.ndarray, class_name: str, color, thickness: int = 2) -> np.ndarray:
     """
     Uses cv2 to draw colored bounding boxes and class names in an image
 
@@ -86,10 +86,10 @@ def visualize_bbox(img: np.ndarray, bbox: np.ndarray, class_name: str, color, th
 
 def visualize(
     image: np.ndarray,
-    bboxes: List[Union[torch.Tensor, np.ndarray]] = [],
-    category_ids: List[Union[torch.Tensor, np.ndarray]] = [],
-    colors: List[Tuple[int, int, int]] = [()],
-    titles: List[str] = [],
+    bboxes: Iterable[Union[torch.Tensor, np.ndarray]] = [],
+    category_ids: Iterable[Union[torch.Tensor, np.ndarray]] = [],
+    colors: Iterable[Tuple[int, int, int]] = [],
+    titles: Iterable[str] = [],
     category_id_to_name=CATEGORY_ID_TO_NAME,
     dpi=150,
 ) -> None:
@@ -100,20 +100,20 @@ def visualize(
     ----------
     image : np.ndarray
         Image as numpy array
-    bboxes : List[Union[torch.Tensor, np.ndarray]], optional
+    bboxes : Iterable[Union[torch.Tensor, np.ndarray]], optional
         Bouding boxes, by default []
-    category_ids : List[Union[torch.Tensor, np.ndarray]], optional
+    category_ids : Iterable[Union[torch.Tensor, np.ndarray]], optional
         Category ids, by default []
-    colors : List[Tuple[int, int, int]], optional
+    colors : Iterable[Tuple[int, int, int]], optional
         Colors for each bounding box, by default [()]
-    titles : List[str], optional
+    titles : Iterable[str], optional
         Titles for each image, by default []
-    category_id_to_name : [type], optional
+    category_id_to_name : Dict[str, str], optional
         Dictionary of category ids to names, by default CATEGORY_ID_TO_NAME
     dpi : int, optional
         DPI for clarity, by default 150
     """
-    bboxes, category_ids, colors, titles = list(map(list, [bboxes, category_ids, colors, titles]))
+    bboxes, category_ids, colors, titles = list(map(list, [bboxes, category_ids, colors, titles]))  # type: ignore
     n = len(bboxes)
     assert (
         n == len(category_ids) == len(colors) == len(titles) - 1
@@ -136,7 +136,7 @@ def visualize(
         plt.axis("off")
         j = i - 2
         plt.title(titles[j])
-        for bbox, category_id in zip(bboxes[j], category_ids[j]):
+        for bbox, category_id in zip(bboxes[j], category_ids[j]):  # type: ignore
             if isinstance(bbox, torch.Tensor):
                 bbox = bbox.numpy()
 

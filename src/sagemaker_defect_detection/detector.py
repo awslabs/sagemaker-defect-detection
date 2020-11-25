@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 from typing import Optional
 from pathlib import Path
 from os import path as osp

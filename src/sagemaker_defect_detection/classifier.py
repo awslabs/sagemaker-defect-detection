@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 from typing import Dict
 import os
 from collections import OrderedDict

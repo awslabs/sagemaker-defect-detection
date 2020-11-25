@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Union
 from pathlib import Path
 import tarfile
 import logging
@@ -18,7 +18,7 @@ def get_logger(config_path: str) -> logging.Logger:
     return logger
 
 
-def str2bool(flag: str) -> bool:
+def str2bool(flag: Union[str, bool]) -> bool:
     if not isinstance(flag, bool):
         if flag.lower() == "false":
             flag = False
@@ -41,12 +41,12 @@ def load_checkpoint(model: nn.Module, path: str, prefix: Optional[str]) -> nn.Mo
     path = Path(path)
     logger.info(f"path: {path}")
     if path.is_dir():
-        path = str(list(path.rglob("*.ckpt"))[0])
+        path_str = str(list(path.rglob("*.ckpt"))[0])
     else:
-        path = str(path)
+        path_str = str(path)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    state_dict = torch.load(path, map_location=torch.device(device))["state_dict"]
+    state_dict = torch.load(path_str, map_location=torch.device(device))["state_dict"]
     if prefix is not None:
         if prefix[-1] != ".":
             prefix += "."

@@ -75,7 +75,10 @@ class MFN(nn.Module):
         self.backbone = get_backbone(backbone)
         # input 224x224 -> conv1 output size 112x112
         self.start_layer = nn.Sequential(
-            self.backbone.conv1, self.backbone.bn1, self.backbone.relu, self.backbone.maxpool
+            self.backbone.conv1,  # type: ignore
+            self.backbone.bn1,  # type: ignore
+            self.backbone.relu,  # type: ignore
+            self.backbone.maxpool,  # type: ignore
         )
         self.r2 = self.backbone.layer1  # 64/256x56x56 <- (resnet34/resnet50)
         self.r3 = self.backbone.layer2  # 128/512x28x28
@@ -120,7 +123,7 @@ class MFN(nn.Module):
 
         self.out_channels = 512 if backbone == "resnet34" else 2048  # required for FasterRCNN
 
-    def forward(self, x) -> torch.Tensor:
+    def forward(self, x):
         x = self.start_layer(x)
         x = self.r2(x)
         b2_out = self.b2(x)
@@ -155,7 +158,7 @@ class Classification(nn.Module):
         self.flatten = nn.Flatten()
         self.fc = nn.Linear(self.mfn.out_channels * 14 ** 2, num_classes)
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         return self.fc(self.flatten(self.mfn(x)))
 
 
@@ -213,7 +216,7 @@ class CustomTwoMLPHead(nn.Module):
             nn.ReLU(inplace=True),
         )
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         x = self.avgpool(x)
         x = x.flatten(start_dim=1)
         x = self.mlp(x)
