@@ -17,3 +17,13 @@ exclude = '''
   )
 )
 '''
+
+[tool.portray]
+moduels = ["sagemaker-defect-detection"]
+docs_dir = "docs"
+
+[tool.portray.mkdocs.theme]
+favicon = "docs/sagemaker.png"
+logo = "docs/sagemaker.png"
+name = "material"
+palette = {primary = "dark blue"}
