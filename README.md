@@ -191,7 +191,7 @@ For using your own data, make sure it is labeled and is a *relatively* balanced 
 * [Amazon SageMaker Python SDK Documentation](https://sagemaker.readthedocs.io/en/stable/)
 * [AWS CloudFormation User Guide](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)
 
-### Resources
+### References
 
 * K. Song and Y. Yan, “A noise robust method based on completed local binary patterns for hot-rolled steel strip surface defects,” Applied Surface Science, vol. 285, pp. 858-864, Nov. 2013.
 
