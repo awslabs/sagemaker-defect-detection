@@ -36,15 +36,21 @@ jobs:
         if [ "$ec1" -ne "0" ]; then echo 'ERROR'; ec=1; else echo 'SUCCESS'; ec=0; fi;
         echo "Exit Code Final `echo $ec`"
         exit $ec
+    - name: Build the package
+      run: |
+        python -m pip install -e '.[dev,test,doc]'
     - name: Code style check
       run: |
-        python -m pip install black
         black --check src
     - name: Notebook style check
       run: |
-        python -m pip install black-nb==0.3.0
         black-nb notebooks/*.ipynb --check
     - name: Type check
       run: |
-        python -m pip install mypy
         mypy --ignore-missing-imports --allow-redefinition --pretty --show-error-context src/
+    - name: Run tests
+      run: |
+        pytest --pyargs src/ -s
+    - name: Update docs
+      run: |
+        portray on_github_pages -m "Update gh-pages"
