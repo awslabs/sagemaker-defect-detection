@@ -19,7 +19,7 @@ exclude = '''
 '''
 
 [tool.portray]
-moduels = ["sagemaker-defect-detection"]
+modules = ["src/sagemaker_defect_detection", "src/prepare_data/neu.py"]
 docs_dir = "docs"
 
 [tool.portray.mkdocs.theme]
