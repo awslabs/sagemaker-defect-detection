@@ -53,4 +53,4 @@ jobs:
         pytest --pyargs src/ -s
     - name: Update docs
       run: |
-        portray on_github_pages -m "Update gh-pages"
+        portray on_github_pages -m "Update gh-pages" -f
