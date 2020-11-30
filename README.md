@@ -98,9 +98,10 @@ This solution trains a classifier on **NEU-CLS** dataset as well as a detector o
 
 <p align="center">
   <img src="docs/data.png" alt="Sample data" width="500" height="500">
+</p>
+<p align="center">
   <a href="http://faculty.neu.edu.cn/yunhyan/NEU_surface_defect_database.html"> NEU sample</a>
 </p>
-
 
 and here are the sample detection results
 
