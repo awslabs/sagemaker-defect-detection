@@ -9,7 +9,7 @@
   <a href="https://github.com/awslabs/sagemaker-defect-detection/issues/new?assignees=ehsanmok&labels=question&template=questions-or-general-feedbacks.md&title=%5BGeneral%5D"><img alt="AMA" src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg"></a>
  </p>
 
-This solution detects product defects with an end-to-end Deep Learning workflow for quality control in manufacturing process. The solution takes input of product images and identifies defect regions with bounding boxes. In particular, this solution uses an implementation of  [An End-to-End Steel Surface Defect Detection](https://ieeexplore.ieee.org/document/8709818) on [NEU surface defect database](https://github.com/awslabs/sagemaker-defect-detection/blob/mainline/docs/NEU_surface_defect_database.pdf) (see [references](#references)) in [PyTorch](https://pytorch.org/) using [PyTorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning).
+This solution detects product defects with an end-to-end Deep Learning workflow for quality control in manufacturing process. The solution takes input of product images and identifies defect regions with bounding boxes. In particular, this solution uses an implementation of  [An End-to-End Steel Surface Defect Detection](https://ieeexplore.ieee.org/document/8709818) on [NEU surface defect database](http://faculty.neu.edu.cn/yunhyan/NEU_surface_defect_database.html) (see [references](#references)) in [PyTorch](https://pytorch.org/) using [PyTorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning).
 
 
 ## Background
@@ -98,6 +98,7 @@ This solution trains a classifier on **NEU-CLS** dataset as well as a detector o
 
 <p align="center">
   <img src="docs/data.png" alt="Sample data" width="500" height="500">
+  <a href="http://faculty.neu.edu.cn/yunhyan/NEU_surface_defect_database.html"> NEU sample</a>
 </p>
 
 
