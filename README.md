@@ -2,9 +2,10 @@
 
 <p align="center">
   <a href="https://github.com/awslabs/sagemaker-defect-detection/actions"><img alt="Actions Status" src="https://github.com/awslabs/sagemaker-defect-detection/workflows/CI/badge.svg"></a>
-  <a href="https://github.com/awslabs/sagemaker-defect-detection/blob/mainline/LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/github/license/awslabs/sagemaker-defect-detection.svg"></a>
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/actions"><img alt="CodeQL Status" src="https://github.com/awslabs/sagemaker-defect-detection/workflows/CodeQL/badge.svg"></a>
   <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
   <br>
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/blob/mainline/LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/github/license/awslabs/sagemaker-defect-detection.svg"></a>
   <a href="https://github.com/awslabs/sagemaker-defect-detection/graphs/commit-activity"><img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"></a>
   <a href="https://github.com/awslabs/sagemaker-defect-detection/issues/new?assignees=ehsanmok&labels=question&template=questions-or-general-feedbacks.md&title=%5BGeneral%5D"><img alt="AMA" src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg"></a>
  </p>
