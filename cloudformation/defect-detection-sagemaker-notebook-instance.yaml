@@ -48,6 +48,7 @@ Resources:
               cd /home/ec2-user/SageMaker
               source /home/ec2-user/anaconda3/bin/activate pytorch_latest_p36
               cd dist || exit 1
+              python -m pip install sagemaker==1.71.0
               python -m pip install sagemaker_defect_detection-0.1-py3-none-any.whl
               source /home/ec2-user/anaconda3/bin/deactivate
               EOF
