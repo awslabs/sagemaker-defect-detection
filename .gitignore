@@ -13,7 +13,7 @@ dist
 build
 site-packages
 stack_outputs.json
-
+docs/*.py
 raw_neu_det
 neu_det
 raw_neu_cls
