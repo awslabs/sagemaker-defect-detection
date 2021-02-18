@@ -13,6 +13,36 @@
 This solution detects product defects with an end-to-end Deep Learning workflow for quality control in manufacturing process. The solution takes input of product images and identifies defect regions with bounding boxes. In particular, this solution uses an implementation of  [An End-to-End Steel Surface Defect Detection](https://ieeexplore.ieee.org/document/8709818) on [NEU surface defect database](http://faculty.neu.edu.cn/yunhyan/NEU_surface_defect_database.html) (see [references](#references)) in [PyTorch](https://pytorch.org/) using [PyTorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning).
 
 
+## Overview
+
+### How Does the Input Data Look Like?
+
+Input is an image of a defective / non-defective product. Here is an example used in the demo
+
+<p align="center">
+  <img src="docs/sample2.png" alt="Solution Architecture" width="600" height="300">
+</p>
+
+### How to Prepare Your Data to Feed into the Model?
+
+There is data preparation and preprocessing steps and should be followed in the notebook.
+
+### What Are the Outputs?
+
+Classifications and detections of defects and type of defects with bounding boxes (if there is any).
+
+### What is the Estimated Cost?
+
+Running the solution end-to-end costs around than $8 USD. Please make sure you have read the cleaning up part [here](#cleaning-up).
+
+### How does the Data Flow Look Like?
+
+<p align="center">
+  <img src="docs/data_flow.png" alt="Solution Architecture" width="600" height="300">
+</p>
+
+# Solution Details
+
 ## Background
 
 According to the [Gartner](https://www.gartner.com/smarterwithgartner/gartner-top-10-strategic-technology-trends-for-2020/),  hyper-automation is the number one trend in 2020 and will continue advancing in future. When it comes to manufacturing, one of the main barriers to hyper-automation is in areas where Human involvements is still struggling to be reduced and intelligent systems have hard times to become on-par with Human visual recognition abilities and become mainstream, despite great advancement of Deep Learning in Computer Vision. This is mainly due to lack of enough annotated data (or when data is sparse) in areas such as _Quality Control_ sections where trained Human eyes still dominates.
@@ -107,9 +137,6 @@ This solution trains a classifier on **NEU-CLS** dataset as well as a detector o
 and here are the sample detection results
 
 <p align="center">
-  <img src="docs/sample2.png" alt="sample2" width="600" height="300"/>
-</p>
-<p align="center">
   <img src="docs/sample3.png" alt="sample3" width="600" height="300"/>
 </p>
 
@@ -135,19 +162,17 @@ and here are the sample detection results
 
 ## Architecture Overview
 
-The project
-
-* Needs access to [Amazon S3](https://aws.amazon.com/s3/) for storing data and training artifacts
-* Provides interactive **training**, **evaluation** and **visualiztions** of the results in the provided notebooks using [Amazon SageMaker](https://aws.amazon.com/sagemaker/)
-* **Deplying** and testing an [HTTPS endpoint](https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-hosting.html)
-* Monitoring the deployed model via [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/)
-
-Here is the visual architecture
+Here is architecture for the end-to-end training and deployment process
 
 <p align="center">
-  <img src="docs/arch.png" alt="Solution Architecture" width="600" height="500">
+  <img src="docs/train_arch.png" alt="Solution Architecture" width="800" height="400">
 </p>
 
+1. The input data located in an [Amazon S3](https://aws.amazon.com/s3/) bucket
+2. The provided [SageMaker notebook](source/deep_demand_forecast.ipynb) that gets the input data and launches the later stages below
+3. **Training Classifier and Detector models** and evaluating its results using Amazon SageMaker. If desired, one can deploy the trained models and create SageMaker endpoints
+4. **SageMaker endpoint** created from the previous step is an [HTTPS endpoint](https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-hosting.html) and is capable of producing predictions
+5.  Monitoring the training and deployed model via [Amazon CloudWatch](https://aws.amazon.com/cloudwatch/)
 
 ## Cleaning up
 
