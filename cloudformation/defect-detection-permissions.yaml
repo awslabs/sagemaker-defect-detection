@@ -5,7 +5,7 @@ Parameters:
     Type: String
   SolutionName:
     Type: String
-  S3BucketName:
+  S3Bucket:
     Type: String
   StackVersion:
     Type: String
@@ -14,7 +14,7 @@ Mappings:
   S3:
     release:
       BucketPrefix: "sagemaker-solutions-prod"
-    dev:
+    development:
       BucketPrefix: "sagemaker-solutions-devo"
 
 Resources:
@@ -136,7 +136,7 @@ Resources:
               - s3:GetBucketLocation
               - s3:ListBucketMultipartUploads
             Resource:
-              - !Sub "arn:aws:s3:::${S3BucketName}"
+              - !Sub "arn:aws:s3:::${S3Bucket}"
           - Effect: Allow
             Action:
               - s3:AbortMultipartUpload
@@ -145,8 +145,8 @@ Resources:
               - s3:PutObject
               - s3:DeleteObject
             Resource:
-              - !Sub "arn:aws:s3:::${S3BucketName}"
-              - !Sub "arn:aws:s3:::${S3BucketName}/*"
+              - !Sub "arn:aws:s3:::${S3Bucket}"
+              - !Sub "arn:aws:s3:::${S3Bucket}/*"
           - Effect: Allow
             Action:
               - s3:CreateBucket

@@ -90,7 +90,7 @@ def on_delete(event, __):
         delete_sagemaker_endpoint(endpoint_name)
 
     # remove files in s3
-    output_bucket = event["ResourceProperties"]["S3BucketName"]
+    output_bucket = event["ResourceProperties"]["S3Bucket"]
     delete_s3_objects(output_bucket)
 
     # delete buckets

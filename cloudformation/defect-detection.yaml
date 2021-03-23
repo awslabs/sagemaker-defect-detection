@@ -23,8 +23,8 @@ Parameters:
       or begin with  'sagemaker-defect-detection-' followed by a set of letters and hyphens.
       Used to specify a particular directory on S3, that can correspond to a development branch.
     Type: String
-    Default: "sagemaker-defect-detection"
-    AllowedPattern: '^sagemaker-defect-detection-?[a-z\-]*$'
+    Default: "sagemaker-defect-detection/1.1.0"
+    AllowedPattern: '^sagemaker-defect-detection(/[0-9]+\.[0-9]+\.[0-9]+-?[a-zA-Z-0-9\.+]*)?$'
 
   IamRole:
     Type: String
@@ -57,7 +57,7 @@ Parameters:
     Default: release
     AllowedValues:
       - release
-      - dev
+      - development
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -97,7 +97,7 @@ Mappings:
   S3:
     release:
       BucketPrefix: "sagemaker-solutions-prod"
-    dev:
+    development:
       BucketPrefix: "sagemaker-solutions-devo"
 
 Resources:
@@ -130,13 +130,13 @@ Resources:
     Condition: CreateCustomSolutionRole
     Properties:
       TemplateURL: !Sub
-        - "https://${SolutionRefBucketBase}-${AWS::Region}.s3.amazonaws.com/${SolutionName}/cloudformation/defect-detection-permissions.yaml"
+        - "https://${SolutionRefBucketBase}-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/${SolutionName}/cloudformation/defect-detection-permissions.yaml"
         - SolutionRefBucketBase:
             !FindInMap [S3, !Ref StackVersion, BucketPrefix]
       Parameters:
         SolutionPrefix: !Ref SolutionPrefix
         SolutionName: !Ref SolutionName
-        S3BucketName: !Ref S3Bucket
+        S3Bucket: !Ref S3Bucket
         StackVersion: !Ref StackVersion
 
   SageMakerStack:
@@ -144,13 +144,13 @@ Resources:
     Condition: CreateClassicSageMakerResources
     Properties:
       TemplateURL: !Sub
-        - "https://${SolutionRefBucketBase}-${AWS::Region}.s3.amazonaws.com/${SolutionName}/cloudformation/defect-detection-sagemaker-notebook-instance.yaml"
+        - "https://${SolutionRefBucketBase}-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/${SolutionName}/cloudformation/defect-detection-sagemaker-notebook-instance.yaml"
         - SolutionRefBucketBase:
             !FindInMap [S3, !Ref StackVersion, BucketPrefix]
       Parameters:
         SolutionPrefix: !Ref SolutionPrefix
         SolutionName: !Ref SolutionName
-        SolutionS3Bucket: !Ref S3Bucket
+        S3Bucket: !Ref S3Bucket
         SageMakerIAMRoleArn:
           !If [
             CreateCustomSolutionRole,
@@ -164,15 +164,15 @@ Resources:
     Type: "AWS::CloudFormation::Stack"
     Properties:
       TemplateURL: !Sub
-        - "https://${SolutionRefBucketBase}-${AWS::Region}.s3.amazonaws.com/${SolutionName}/cloudformation/solution-assistant/solution-assistant.yaml"
+        - "https://${SolutionRefBucketBase}-${AWS::Region}.s3.${AWS::Region}.amazonaws.com/${SolutionName}/cloudformation/solution-assistant/solution-assistant.yaml"
         - SolutionRefBucketBase:
             !FindInMap [S3, !Ref StackVersion, BucketPrefix]
       Parameters:
         SolutionPrefix: !Ref SolutionPrefix
         SolutionName: !Ref SolutionName
         StackName: !Ref AWS::StackName
-        S3BucketName: !Ref S3Bucket
-        SolutionsS3BucketName: !Sub
+        S3Bucket: !Ref S3Bucket
+        SolutionS3Bucket: !Sub
           - "${SolutionRefBucketBase}-${AWS::Region}"
           - SolutionRefBucketBase:
               !FindInMap [S3, !Ref StackVersion, BucketPrefix]
@@ -185,11 +185,12 @@ Resources:
 
 Outputs:
   SolutionName:
+    Description: "The name for the solution, can be used to deploy different versions of the solution"
     Value: !Ref SolutionName
 
   SourceCode:
     Condition: CreateClassicSageMakerResources
-    Description: "Open Jupyter IDE. This authenticate you against Jupyter."
+    Description: "Open Jupyter IDE. This authenticate you against Jupyter"
     Value: !GetAtt SageMakerStack.Outputs.SourceCode
 
   NotebookInstance:
@@ -222,9 +223,13 @@ Outputs:
     Description: "Solution Prefix for naming SageMaker transient resources"
     Value: !Ref SolutionPrefix
 
-  SolutionS3Bucket:
-    Description: "Solution S3 bucket name"
+  S3Bucket:
+    Description: "S3 bucket name used in the solution to store artifacts"
     Value: !Ref S3Bucket
+
+  SolutionS3Bucket:
+    Description: "Solution S3 bucket"
+    Value: !FindInMap [S3, !Ref StackVersion, BucketPrefix]
 
   SageMakerMode:
     Value: !If [CreateClassicSageMakerResources, "NotebookInstance", "Studio"]

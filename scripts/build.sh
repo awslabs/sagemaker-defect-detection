@@ -10,12 +10,18 @@ if [ $# -lt 3 ]; then
     exit 1
 fi
 
+REGION=$3
+SOURCE_REGION="us-west-2"
+echo "Region: $REGION, source region: $SOURCE_REGION"
 BASE_DIR="$(dirname "$(dirname "$(readlink -f "$0")")")"
 echo "Base dir: $BASE_DIR"
 
 rm -rf build
 
+# build python package
 echo "Python build and package"
+python -m pip install --upgrade pip
+python -m pip install --upgrade wheel setuptools
 python setup.py build sdist bdist_wheel
 
 find . | grep -E "(__pycache__|\.pyc|\.pyo$|\.egg*|\lightning_logs)" | xargs rm -rf
@@ -34,6 +40,7 @@ cd - || exit
 
 mv dist build
 
+# add notebooks to build
 echo "Prepare notebooks and add to build"
 cp -r notebooks build
 rm -rf build/notebooks/*neu* # remove local datasets for build
@@ -44,6 +51,7 @@ done
 echo "Copy src to build"
 cp -r src build
 
+# add solution assistant
 echo "Solution assistant lambda function"
 cd cloudformation/solution-assistant/ || exit
 python -m pip install -r requirements.txt -t ./src/site-packages
@@ -59,12 +67,17 @@ zip -q -r9 "$BASE_DIR"/build/solution-assistant.zip -- *
 cd - || exit
 rm -rf build/solution-assistant
 
-s3_prefix="s3://$2-$3/$1"
+if [ -z "$4" ] || [ "$4" == 'mainline' ]; then
+    s3_prefix="s3://$2-$3/$1"
+else
+    s3_prefix="s3://$2-$3/$1-$4"
+fi
 
+# cleanup and copy the build artifacts
 echo "Removing the existing objects under $s3_prefix"
-aws s3 rm --recursive "$s3_prefix"
+aws s3 rm --recursive "$s3_prefix" --region "$REGION"
 echo "Copying new objects to $s3_prefix"
-aws s3 cp --recursive . "$s3_prefix"/ \
+aws s3 sync . "$s3_prefix" --delete --region "$REGION" \
     --exclude ".git/*" \
     --exclude ".vscode/*" \
     --exclude ".mypy_cache/*" \
@@ -74,16 +87,16 @@ aws s3 cp --recursive . "$s3_prefix"/ \
     --exclude "notebooks/*neu*/*"
 
 echo "Copying solution artifacts"
-aws s3 cp "s3://sagemaker-solutions-artifacts/$1/demo/model.tar.gz" "$s3_prefix"/demo/model.tar.gz
+aws s3 cp "s3://sagemaker-solutions-artifacts/sagemaker-defect-detection/demo/model.tar.gz" "$s3_prefix"/demo/model.tar.gz --source-region "$SOURCE_REGION"
 
 mkdir -p build/pretrained/
-aws s3 cp "s3://sagemaker-solutions-artifacts/$1/pretrained/model.tar.gz" build/pretrained &&
+aws s3 cp "s3://sagemaker-solutions-artifacts/sagemaker-defect-detection/pretrained/model.tar.gz" build/pretrained --source-region "$SOURCE_REGION" &&
     cd build/pretrained/ && tar -xf model.tar.gz && cd .. &&
-    aws s3 sync pretrained "$s3_prefix"/pretrained/
+    aws s3 sync pretrained "$s3_prefix"/pretrained/ --delete --region "$REGION"
 
-aws s3 cp "s3://sagemaker-solutions-artifacts/$1/data/NEU-CLS.zip" "$s3_prefix"/data/
-aws s3 cp "s3://sagemaker-solutions-artifacts/$1/data/NEU-DET.zip" "$s3_prefix"/data/
+aws s3 cp "s3://sagemaker-solutions-artifacts/sagemaker-defect-detection/data/NEU-CLS.zip" "$s3_prefix"/data/ --source-region "$SOURCE_REGION"
+aws s3 cp "s3://sagemaker-solutions-artifacts/sagemaker-defect-detection/data/NEU-DET.zip" "$s3_prefix"/data/ --source-region "$SOURCE_REGION"
 
 echo "Add docs to build"
-aws s3 sync "s3://sagemaker-solutions-artifacts/$1/docs" "$s3_prefix"/docs
-aws s3 sync "s3://sagemaker-solutions-artifacts/$1/docs" "$s3_prefix"/build/docs
+aws s3 sync "s3://sagemaker-solutions-artifacts/sagemaker-defect-detection/docs" "$s3_prefix"/docs --delete --region "$REGION"
+aws s3 sync "s3://sagemaker-solutions-artifacts/sagemaker-defect-detection/docs" "$s3_prefix"/build/docs --delete --region "$REGION"
