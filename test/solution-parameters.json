@@ -1,6 +1,0 @@
-[
-    {
-        "ParameterKey": "CreateSageMakerNotebookInstance",
-        "ParameterValue": "true"
-    }
-]
