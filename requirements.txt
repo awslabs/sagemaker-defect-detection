@@ -45,7 +45,7 @@ pywavelets==1.1.1         # via scikit-image
 pyyaml==5.4.0             # via albumentations, pytorch-lightning
 requests-oauthlib==1.3.0  # via google-auth-oauthlib
 requests==2.24.0          # via requests-oauthlib, tensorboard
-rsa==4.6                  # via google-auth
+rsa==4.7                  # via google-auth
 scikit-image==0.17.2      # via imgaug
 scipy==1.5.4              # via albumentations, imgaug, scikit-image
 shapely==1.7.1            # via imgaug
