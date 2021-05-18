@@ -71,53 +71,13 @@ According to some [estimate](https://www.glassdoor.co.in/Salaries/us-quality-con
 
 You will need an AWS account to use this solution. Sign up for an account [here](https://aws.amazon.com/).
 
-The easiest is to click on the following button to create the *AWS CloudFormation Stack* required for this solution
+To run this JumpStart 1P Solution and have the infrastructure deploy to your AWS account you will need to create an active SageMaker Studio instance (see Onboard to Amazon SageMaker Studio). When your Studio instance is Ready, use the instructions in SageMaker JumpStart to 1-Click Launch the solution.
 
-<table align="center">
-  <tr>
-    <th colspan="3">AWS Region</td>
-    <th>AWS CloudFormation</td>
-  </tr>
-  <tr>
-    <td>US West</td>
-    <td>Oregon</td>
-    <td>us-west-2</td>
-    <td align="center">
-      <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/quickcreate?templateURL=https://sagemaker-solutions-prod-us-west-2.s3.us-west-2.amazonaws.com/sagemaker-defect-detection/1.1.1-github/cloudformation/defect-detection.yaml&stackName=sagemaker-soln-dfd-defect&param_SolutionPrefix=sagemaker-soln-dfd-defect&param_SolutionName=sagemaker-defect-detection/1.1.1-github">
-        <img src="docs/launch.svg" height="35">
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td>US East</td>
-    <td>N. Virginia</td>
-    <td>us-east-1</td>
-    <td align="center">
-      <a href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://sagemaker-solutions-prod-us-east-1.s3.us-east-1.amazonaws.com/sagemaker-defect-detection/1.1.1-github/cloudformation/defect-detection.yaml&stackName=sagemaker-soln-dfd-defect&param_SolutionPrefix=sagemaker-soln-dfd-defect&param_SolutionName=sagemaker-defect-detection/1.1.1-github">
-        <img src="docs/launch.svg" height="35">
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td>US East</td>
-    <td>Ohio</td>
-    <td>us-east-2</td>
-    <td align="center">
-      <a href="https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://sagemaker-solutions-prod-us-east-2.s3.us-east-2.amazonaws.com/sagemaker-defect-detection/1.1.1-github/cloudformation/defect-detection.yaml&stackName=sagemaker-soln-dfd-defect&param_SolutionPrefix=sagemaker-soln-dfd-defect&param_SolutionName=sagemaker-defect-detection/1.1.1-github">
-        <img src="docs/launch.svg" height="35">
-      </a>
-    </td>
-  </tr>
-</table>
+The solution artifacts are included in this GitHub repository for reference.
 
-Then acknowledge adding the default [AWS IAM policy](https://aws.amazon.com/iam/) or use your own policy
+*Note*: Solutions are available in most regions including us-west-2, and us-east-1.
 
-* Click on the **Create Stack**
-* Once the stack was created, go to the **Outputs tab** and click on the **NotebookInstance** link to directly go to the created notebook instance
-* To see the demo, click on **0_demo.ipynb** and follow the instructions
-* Checkout **1_finetune.ipynb** to finetune / resume training of the provided pretrained checkpoint
-* Checkout **2_detection_from_scratch.ipynb** to train a detector from scratch
-* Finally, **3_classification_from_scratch.ipynb** notebook, if you just need an accurate image classifier
+**Caution**: Cloning this GitHub repository and running the code manually could lead to unexpected issues! Use the AWS CloudFormation template. You'll get an Amazon SageMaker Notebook instance that's been correctly setup and configured to access the other resources in the solution.
 
 ## What Does this Solution Offer?
 
