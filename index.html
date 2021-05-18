@@ -1,0 +1,902 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="docs/sagemaker.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>sagemaker-defect-detection</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="dark-blue" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#visual-inspection-automation-with-amazon-sagemaker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="sagemaker-defect-detection" class="md-header__button md-logo" aria-label="sagemaker-defect-detection" data-md-component="logo">
+      
+  <img src="docs/sagemaker.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sagemaker-defect-detection
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/awslabs/sagemaker-defect-detection/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sagemaker-defect-detection
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="sagemaker-defect-detection" class="md-nav__button md-logo" aria-label="sagemaker-defect-detection" data-md-component="logo">
+      
+  <img src="docs/sagemaker.png" alt="logo">
+
+    </a>
+    sagemaker-defect-detection
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/awslabs/sagemaker-defect-detection/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sagemaker-defect-detection
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        Home
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-the-input-data-look-like" class="md-nav__link">
+    How Does the Input Data Look Like?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-prepare-your-data-to-feed-into-the-model" class="md-nav__link">
+    How to Prepare Your Data to Feed into the Model?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-are-the-outputs" class="md-nav__link">
+    What Are the Outputs?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-the-estimated-cost" class="md-nav__link">
+    What is the Estimated Cost?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-does-the-data-flow-look-like" class="md-nav__link">
+    How does the Data Flow Look Like?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CODE_OF_CONDUCT/" class="md-nav__link">
+        Code Of Conduct
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="CONTRIBUTING/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/neu/" class="md-nav__link">
+        Neu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Sagemaker Defect Detection
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Sagemaker Defect Detection" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Sagemaker Defect Detection
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/classifier/" class="md-nav__link">
+        Classifier
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/detector/" class="md-nav__link">
+        Detector
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/transforms/" class="md-nav__link">
+        Transforms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_5" type="checkbox" id="__nav_4_2_5" >
+      
+      <label class="md-nav__link" for="__nav_4_2_5">
+        Dataset
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dataset" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Dataset
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/dataset/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/dataset/neu/" class="md-nav__link">
+        Neu
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_6" type="checkbox" id="__nav_4_2_6" >
+      
+      <label class="md-nav__link" for="__nav_4_2_6">
+        Models
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Models" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/models/ddn/" class="md-nav__link">
+        Ddn
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/models/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_7" type="checkbox" id="__nav_4_2_7" >
+      
+      <label class="md-nav__link" for="__nav_4_2_7">
+        Utils
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Utils" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/utils/coco_eval/" class="md-nav__link">
+        Coco Eval
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/utils/coco_utils/" class="md-nav__link">
+        Coco Utils
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/utils/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/sagemaker_defect_detection/utils/visualize/" class="md-nav__link">
+        Visualize
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-the-input-data-look-like" class="md-nav__link">
+    How Does the Input Data Look Like?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-prepare-your-data-to-feed-into-the-model" class="md-nav__link">
+    How to Prepare Your Data to Feed into the Model?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-are-the-outputs" class="md-nav__link">
+    What Are the Outputs?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-the-estimated-cost" class="md-nav__link">
+    What is the Estimated Cost?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-does-the-data-flow-look-like" class="md-nav__link">
+    How does the Data Flow Look Like?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/awslabs/sagemaker-defect-detection/edit/main/README.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="visual-inspection-automation-with-amazon-sagemaker">Visual Inspection Automation with Amazon SageMaker</h1>
+<p align="center">
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/actions"><img alt="Actions Status" src="https://github.com/awslabs/sagemaker-defect-detection/workflows/CI/badge.svg"></a>
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/actions"><img alt="CodeQL Status" src="https://github.com/awslabs/sagemaker-defect-detection/workflows/CodeQL/badge.svg"></a>
+  <a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+  <br>
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/blob/mainline/LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/github/license/awslabs/sagemaker-defect-detection.svg"></a>
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/graphs/commit-activity"><img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg"></a>
+  <a href="https://github.com/awslabs/sagemaker-defect-detection/issues/new?assignees=ehsanmok&labels=question&template=questions-or-general-feedbacks.md&title=%5BGeneral%5D"><img alt="AMA" src="https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg"></a>
+ </p>
+
+<p>This solution detects product defects with an end-to-end Deep Learning workflow for quality control in manufacturing process. The solution takes input of product images and identifies defect regions with bounding boxes. In particular, this solution uses an implementation of  <a href="https://ieeexplore.ieee.org/document/8709818">An End-to-End Steel Surface Defect Detection</a> on <a href="http://faculty.neu.edu.cn/yunhyan/NEU_surface_defect_database.html">NEU surface defect database</a> (see <a href="#references">references</a>) in <a href="https://pytorch.org/">PyTorch</a> using <a href="https://github.com/PyTorchLightning/pytorch-lightning">PyTorch-lightning</a>.</p>
+<h2 id="overview">Overview</h2>
+<h3 id="how-does-the-input-data-look-like">How Does the Input Data Look Like?</h3>
+<p>Input is an image of a defective / non-defective product. Here is an example used in the demo</p>
+<p align="center">
+  <img src="docs/sample2.png" alt="Solution Architecture" width="600" height="300">
+</p>
+
+<h3 id="how-to-prepare-your-data-to-feed-into-the-model">How to Prepare Your Data to Feed into the Model?</h3>
+<p>There is data preparation and preprocessing steps and should be followed in the notebook.</p>
+<h3 id="what-are-the-outputs">What Are the Outputs?</h3>
+<p>Classifications and detections of defects and type of defects with bounding boxes (if there is any).</p>
+<h3 id="what-is-the-estimated-cost">What is the Estimated Cost?</h3>
+<p>Running the solution end-to-end costs around than $8 USD. Please make sure you have read the cleaning up part <a href="#cleaning-up">here</a>.</p>
+<h3 id="how-does-the-data-flow-look-like">How does the Data Flow Look Like?</h3>
+<p align="center">
+  <img src="docs/data_flow.png" alt="Solution Architecture" width="600" height="300">
+</p>
+
+<h1 id="solution-details">Solution Details</h1>
+<h2 id="background">Background</h2>
+<p>According to the <a href="https://www.gartner.com/smarterwithgartner/gartner-top-10-strategic-technology-trends-for-2020/">Gartner</a>,  hyper-automation is the number one trend in 2020 and will continue advancing in future. When it comes to manufacturing, one of the main barriers to hyper-automation is in areas where Human involvements is still struggling to be reduced and intelligent systems have hard times to become on-par with Human visual recognition abilities and become mainstream, despite great advancement of Deep Learning in Computer Vision. This is mainly due to lack of enough annotated data (or when data is sparse) in areas such as <em>Quality Control</em> sections where trained Human eyes still dominates.</p>
+<h2 id="what-is-visual-inspection">What is Visual Inspection?</h2>
+<p>The <strong>analysis of products on the production line for the purpose of Quality Control</strong>. Visual inspection can also be used for internal and external assessment of the various equipment in a production facility such as storage tanks, pressure vessels, piping, and other equipment (<a href="https://nanonets.com/blog/ai-visual-inspection/">source</a>) which expands to many industries from Electronics, Medical, Food and Raw Materials.</p>
+<h3 id="what-are-the-problems">What are the Problems?</h3>
+<p>Some of the major problems are</p>
+<h4 id="human-visual-error">Human Visual Error</h4>
+<p><strong>Human visual inspection error</strong> is a major factor in this area. According to this <a href="https://www.osti.gov/servlets/purl/1476816">report</a></p>
+<blockquote>
+<p>Most inspection tasks are much more complex and typically exhibit error rates of 20% to 30% (Drury &amp; Fox, 1975)</p>
+</blockquote>
+<p>which directly translates to <em>cost</em>.</p>
+<h4 id="cost">Cost</h4>
+<p>According to some <a href="https://www.glassdoor.co.in/Salaries/us-quality-control-inspector-salary-SRCH_IL.0,2_IN1_KO3,28.htm">estimate</a>, a trained quality inspector salary varies between 26K (US) - 60K per year.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>You will need an AWS account to use this solution. Sign up for an account <a href="https://aws.amazon.com/">here</a>.</p>
+<p>To run this JumpStart 1P Solution and have the infrastructure deploy to your AWS account you will need to create an active SageMaker Studio instance (see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/gs-studio-onboard.html">Onboard to Amazon SageMaker Studio</a>). When your Studio instance is <em>Ready</em>, use the instructions in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html">SageMaker JumpStart</a> to 1-Click Launch the solution.</p>
+<p>The solution artifacts are included in this GitHub repository for reference.</p>
+<p><em>Note</em>: Solutions are available in most regions including us-west-2, and us-east-1.</p>
+<p><strong>Caution</strong>: Cloning this GitHub repository and running the code manually could lead to unexpected issues! Use the AWS CloudFormation template. You'll get an Amazon SageMaker Notebook instance that's been correctly setup and configured to access the other resources in the solution.</p>
+<h2 id="what-does-this-solution-offer">What Does this Solution Offer?</h2>
+<p>This solution offers an implementation of the state-of-the-art Deep Learning approach for automatic <em>Steel Surface Defect Detection</em> using <strong>Amazon SageMaker</strong>. The <a href="https://ieeexplore.ieee.org/document/8709818">model</a> enhances <a href="https://arxiv.org/abs/1506.01497">Faster RCNN</a> and output possible defects in an image of surface of a steel. The <strong>NEU surface defect database</strong>(see <a href="#references">references</a>), is a <em>balanced</em> dataset which contains</p>
+<blockquote>
+<p>Six kinds of typical surface defects of the hot-rolled steel strip are collected, i.e., rolled-in scale (RS), patches (Pa), crazing (Cr), pitted surface (PS), inclusion (In) and scratches (Sc). The database includes 1,800 grayscale images: 300 samples each of six different kinds of typical surface defects</p>
+</blockquote>
+<p>This solution trains a classifier on <strong>NEU-CLS</strong> dataset as well as a detector on <strong>NEU-DET</strong> dataset. Here is a sample images of the six classes</p>
+<p align="center">
+  <img src="docs/data.png" alt="Sample data" width="500" height="500">
+</p>
+<p align="center">
+  <a href="http://faculty.neu.edu.cn/yunhyan/NEU_surface_defect_database.html"> NEU sample</a>
+</p>
+
+<p>and here are the sample detection results</p>
+<p align="center">
+  <img src="docs/sample3.png" alt="sample3" width="600" height="300"/>
+</p>
+
+<h2 id="contents">Contents</h2>
+<ul>
+<li><code>cloudformation/</code><ul>
+<li><code>defect-detection.yaml</code>: The root cloudformation nested stack which creates the AWS stack for this solution</li>
+<li><code>defect-detection-sagemaker-notebook-instance.yaml</code>: Creates SageMaker notebook instance</li>
+<li><code>defect-detection-permissions.yaml</code>: Manages all the permission necessary to launch the stack</li>
+<li><code>defect-detection-endpoint.yaml</code>: Creates demo endpoint using in <code>0_demo.ipynb</code></li>
+<li><code>solution-assistant</code>: Deletes the created resources such as endpoint, S3 bucket etc. during cleanup</li>
+</ul>
+</li>
+<li><code>src/</code><ul>
+<li><code>prepare_data/</code>: Data prepartion for NEU datasets</li>
+<li><code>sagemaker_defect_detection/</code>: Main package<ul>
+<li><code>dataset</code>: Contains NEU dataset handling</li>
+<li><code>models</code>: Contains the MFN model code</li>
+<li><code>utils</code>: Various utilities for visualization and coco evaluation</li>
+<li><code>classifier.py</code>: For classification task</li>
+<li><code>detector.py</code>: For detection task</li>
+<li><code>transforms.py</code>: Contains the image transformations used in training</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>notebooks/</code>: All the notebooks described above</li>
+<li><code>scripts/</code>: Various scripts for training and building</li>
+</ul>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>Here is architecture for the end-to-end training and deployment process</p>
+<p align="center">
+  <img src="docs/train_arch.png" alt="Solution Architecture" width="800" height="400">
+</p>
+
+<ol>
+<li>The input data located in an <a href="https://aws.amazon.com/s3/">Amazon S3</a> bucket</li>
+<li>The provided <a href="source/deep_demand_forecast.ipynb">SageMaker notebook</a> that gets the input data and launches the later stages below</li>
+<li><strong>Training Classifier and Detector models</strong> and evaluating its results using Amazon SageMaker. If desired, one can deploy the trained models and create SageMaker endpoints</li>
+<li><strong>SageMaker endpoint</strong> created from the previous step is an <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-hosting.html">HTTPS endpoint</a> and is capable of producing predictions</li>
+<li>Monitoring the training and deployed model via <a href="https://aws.amazon.com/cloudwatch/">Amazon CloudWatch</a></li>
+</ol>
+<h2 id="cleaning-up">Cleaning up</h2>
+<p>When you've finished with this solution, make sure that you delete all unwanted AWS resources. AWS CloudFormation can be used to automatically delete all standard resources that have been created by the solution and notebook. Go to the AWS CloudFormation Console, and delete the parent stack. Choosing to delete the parent stack will automatically delete the nested stacks.</p>
+<p><strong>Caution:</strong> You need to manually delete any extra resources that you may have created in this notebook. Some examples include, extra Amazon S3 buckets (to the solution's default bucket), extra Amazon SageMaker endpoints (using a custom name).</p>
+<h2 id="customization">Customization</h2>
+<p>For using your own data, make sure it is labeled and is a <em>relatively</em> balanced dataset.</p>
+<h2 id="useful-links">Useful Links</h2>
+<ul>
+<li><a href="https://aws.amazon.com/sagemaker/getting-started/">Amazon SageMaker Getting Started</a></li>
+<li><a href="https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html">Amazon SageMaker Developer Guide</a></li>
+<li><a href="https://sagemaker.readthedocs.io/en/stable/">Amazon SageMaker Python SDK Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html">AWS CloudFormation User Guide</a></li>
+</ul>
+<h3 id="references">References</h3>
+<ul>
+<li>
+<p>K. Song and Y. Yan, “A noise robust method based on completed local binary patterns for hot-rolled steel strip surface defects,” Applied Surface Science, vol. 285, pp. 858-864, Nov. 2013.</p>
+</li>
+<li>
+<p>Yu He, Kechen Song, Qinggang Meng, Yunhui Yan, “An End-to-end Steel Surface Defect Detection Approach via Fusing Multiple Hierarchical Features,” IEEE Transactions on Instrumentation and Measuremente, 2020,69(4),1493-1504.</p>
+</li>
+<li>
+<p>Hongwen Dong, Kechen Song, Yu He, Jing Xu, Yunhui Yan, Qinggang Meng, “PGA-Net: Pyramid Feature Fusion and Global Context Attention Network for Automated Surface Defect Detection,” IEEE Transactions on Industrial Informatics, 2020.</p>
+</li>
+</ul>
+<h2 id="security">Security</h2>
+<p>See <a href="CONTRIBUTING/#security-issue-notifications">CONTRIBUTING</a> for more information.</p>
+<h2 id="license">License</h2>
+<p>This project is licensed under the Apache-2.0 License.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+        
+          <a href="CODE_OF_CONDUCT/" title="Code Of Conduct" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Code Of Conduct
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1437 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../docs/sagemaker.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Visualize - sagemaker-defect-detection</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="dark-blue" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-sagemaker_defect_detectionutilsvisualize" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="sagemaker-defect-detection" class="md-header__button md-logo" aria-label="sagemaker-defect-detection" data-md-component="logo">
+      
+  <img src="../../../../docs/sagemaker.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sagemaker-defect-detection
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Visualize
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/awslabs/sagemaker-defect-detection/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sagemaker-defect-detection
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="sagemaker-defect-detection" class="md-nav__button md-logo" aria-label="sagemaker-defect-detection" data-md-component="logo">
+      
+  <img src="../../../../docs/sagemaker.png" alt="logo">
+
+    </a>
+    sagemaker-defect-detection
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/awslabs/sagemaker-defect-detection/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sagemaker-defect-detection
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../CODE_OF_CONDUCT/" class="md-nav__link">
+        Code Of Conduct
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../CONTRIBUTING/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../neu/" class="md-nav__link">
+        Neu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Sagemaker Defect Detection
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Sagemaker Defect Detection" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Sagemaker Defect Detection
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classifier/" class="md-nav__link">
+        Classifier
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../detector/" class="md-nav__link">
+        Detector
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transforms/" class="md-nav__link">
+        Transforms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_5" type="checkbox" id="__nav_4_2_5" >
+      
+      <label class="md-nav__link" for="__nav_4_2_5">
+        Dataset
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dataset" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Dataset
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset/neu/" class="md-nav__link">
+        Neu
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_6" type="checkbox" id="__nav_4_2_6" >
+      
+      <label class="md-nav__link" for="__nav_4_2_6">
+        Models
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Models" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/ddn/" class="md-nav__link">
+        Ddn
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_7" type="checkbox" id="__nav_4_2_7" checked>
+      
+      <label class="md-nav__link" for="__nav_4_2_7">
+        Utils
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Utils" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coco_eval/" class="md-nav__link">
+        Coco Eval
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coco_utils/" class="md-nav__link">
+        Coco Utils
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Visualize
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Visualize
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unnormalize_to_hwc" class="md-nav__link">
+    unnormalize_to_hwc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualize" class="md-nav__link">
+    visualize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualize_bbox" class="md-nav__link">
+    visualize_bbox
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unnormalize_to_hwc" class="md-nav__link">
+    unnormalize_to_hwc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualize" class="md-nav__link">
+    visualize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualize_bbox" class="md-nav__link">
+    visualize_bbox
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/awslabs/sagemaker-defect-detection/edit/main/reference/sagemaker_defect_detection/utils/visualize.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-sagemaker_defect_detectionutilsvisualize">Module sagemaker_defect_detection.utils.visualize</h1>
+<p>None</p>
+<p>None</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">TEXT_COLOR</span> <span class="o">=</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>  <span class="c1"># White</span>
+
+<span class="n">CLASSES</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="s2">&quot;crazing&quot;</span><span class="p">:</span> <span class="s2">&quot;Cr&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;inclusion&quot;</span><span class="p">:</span> <span class="s2">&quot;In&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;pitted_surface&quot;</span><span class="p">:</span> <span class="s2">&quot;PS&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;patches&quot;</span><span class="p">:</span> <span class="s2">&quot;Pa&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;rolled-in_scale&quot;</span><span class="p">:</span> <span class="s2">&quot;RS&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;scratches&quot;</span><span class="p">:</span> <span class="s2">&quot;Sc&quot;</span><span class="p">,</span>
+
+<span class="p">}</span>
+
+<span class="n">CATEGORY_ID_TO_NAME</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">name</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">CLASSES</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">)}</span>
+
+<span class="k">def</span> <span class="nf">unnormalize_to_hwc</span><span class="p">(</span>
+
+    <span class="n">image</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="kp">mean</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span> <span class="kp">std</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">]</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Unnormalizes and a normlized image tensor [0, 1] CHW -&gt; HWC [0, 255]</span>
+
+<span class="sd">    Parameters</span>
+
+<span class="sd">    ----------</span>
+
+<span class="sd">    image : torch.Tensor</span>
+
+<span class="sd">        Normalized image</span>
+
+<span class="sd">    mean : List[float], optional</span>
+
+<span class="sd">        RGB averages used in normalization, by default [0.485, 0.456, 0.406] from imagenet1k</span>
+
+<span class="sd">    std : List[float], optional</span>
+
+<span class="sd">        RGB standard deviations used in normalization, by default [0.229, 0.224, 0.225] from imagenet1k</span>
+
+<span class="sd">    Returns</span>
+
+<span class="sd">    -------</span>
+
+<span class="sd">    np.ndarray</span>
+
+<span class="sd">        Unnormalized image as numpy array</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="kp">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># HWC</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="p">(</span><span class="n">image</span> <span class="o">*</span> <span class="kp">std</span> <span class="o">+</span> <span class="kp">mean</span><span class="p">)</span><span class="o">.</span><span class="kp">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="p">(</span><span class="n">image</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="kp">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">image</span>
+
+<span class="k">def</span> <span class="nf">visualize_bbox</span><span class="p">(</span><span class="n">img</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">bbox</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Uses cv2 to draw colored bounding boxes and class names in an image</span>
+
+<span class="sd">    Parameters</span>
+
+<span class="sd">    ----------</span>
+
+<span class="sd">    img : np.ndarray</span>
+
+<span class="sd">        [description]</span>
+
+<span class="sd">    bbox : np.ndarray</span>
+
+<span class="sd">        [description]</span>
+
+<span class="sd">    class_name : str</span>
+
+<span class="sd">        Class name</span>
+
+<span class="sd">    color : tuple</span>
+
+<span class="sd">        BGR tuple</span>
+
+<span class="sd">    thickness : int, optional</span>
+
+<span class="sd">        Bouding box thickness, by default 2</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">bbox</span><span class="p">))</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span><span class="p">),</span> <span class="p">(</span><span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="n">thickness</span><span class="p">)</span>
+
+    <span class="p">((</span><span class="n">text_width</span><span class="p">,</span> <span class="n">text_height</span><span class="p">),</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">getTextSize</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.3</span> <span class="o">*</span> <span class="n">text_height</span><span class="p">)),</span> <span class="p">(</span><span class="n">x_min</span> <span class="o">+</span> <span class="n">text_width</span><span class="p">,</span> <span class="n">y_min</span><span class="p">),</span> <span class="n">color</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span>
+
+        <span class="n">img</span><span class="p">,</span>
+
+        <span class="n">text</span><span class="o">=</span><span class="n">class_name</span><span class="p">,</span>
+
+        <span class="n">org</span><span class="o">=</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">text_height</span><span class="p">)),</span>
+
+        <span class="n">fontFace</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span>
+
+        <span class="n">fontScale</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+
+        <span class="n">color</span><span class="o">=</span><span class="n">TEXT_COLOR</span><span class="p">,</span>
+
+        <span class="n">lineType</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">LINE_AA</span><span class="p">,</span>
+
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">img</span>
+
+<span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span>
+
+    <span class="n">image</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+
+    <span class="n">bboxes</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[],</span>
+
+    <span class="n">category_ids</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[],</span>
+
+    <span class="n">colors</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[],</span>
+
+    <span class="n">titles</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+
+    <span class="n">category_id_to_name</span><span class="o">=</span><span class="n">CATEGORY_ID_TO_NAME</span><span class="p">,</span>
+
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Applies the bounding boxes and category ids to an image</span>
+
+<span class="sd">    Parameters</span>
+
+<span class="sd">    ----------</span>
+
+<span class="sd">    image : np.ndarray</span>
+
+<span class="sd">        Image as numpy array</span>
+
+<span class="sd">    bboxes : Iterable[Union[torch.Tensor, np.ndarray]], optional</span>
+
+<span class="sd">        Bouding boxes, by default []</span>
+
+<span class="sd">    category_ids : Iterable[Union[torch.Tensor, np.ndarray]], optional</span>
+
+<span class="sd">        Category ids, by default []</span>
+
+<span class="sd">    colors : Iterable[Tuple[int, int, int]], optional</span>
+
+<span class="sd">        Colors for each bounding box, by default [()]</span>
+
+<span class="sd">    titles : Iterable[str], optional</span>
+
+<span class="sd">        Titles for each image, by default []</span>
+
+<span class="sd">    category_id_to_name : Dict[str, str], optional</span>
+
+<span class="sd">        Dictionary of category ids to names, by default CATEGORY_ID_TO_NAME</span>
+
+<span class="sd">    dpi : int, optional</span>
+
+<span class="sd">        DPI for clarity, by default 150</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">bboxes</span><span class="p">,</span> <span class="n">category_ids</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">titles</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="p">[</span><span class="n">bboxes</span><span class="p">,</span> <span class="n">category_ids</span><span class="p">,</span> <span class="n">colors</span><span class="p">,</span> <span class="n">titles</span><span class="p">]))</span>  <span class="c1"># type: ignore</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bboxes</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="p">(</span>
+
+        <span class="n">n</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">category_ids</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">titles</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;number of bboxes, category ids, colors and titles (minus one) do not match&quot;</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span>
+
+    <span class="n">ncols</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="kp">copy</span><span class="p">()</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">bboxes</span><span class="p">):</span>
+
+        <span class="k">return</span>
+
+    <span class="n">titles</span> <span class="o">=</span> <span class="n">titles</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="kp">copy</span><span class="p">()</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">2</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">category_id</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bboxes</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">category_ids</span><span class="p">[</span><span class="n">j</span><span class="p">]):</span>  <span class="c1"># type: ignore</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+
+                <span class="n">bbox</span> <span class="o">=</span> <span class="n">bbox</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">category_id</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+
+                <span class="n">category_id</span> <span class="o">=</span> <span class="n">category_id</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">category_id</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+
+                <span class="n">category_id</span> <span class="o">=</span> <span class="n">category_id</span><span class="o">.</span><span class="kp">item</span><span class="p">()</span>
+
+            <span class="n">class_name</span> <span class="o">=</span> <span class="n">category_id_to_name</span><span class="p">[</span><span class="n">category_id</span><span class="p">]</span>
+
+            <span class="n">img</span> <span class="o">=</span> <span class="n">visualize_bbox</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">bbox</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+    <span class="k">return</span>
+</code></pre></div>
+
+</details>
+<h2 id="variables">Variables</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">CATEGORY_ID_TO_NAME</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">CLASSES</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">TEXT_COLOR</span>
+</code></pre></div>
+
+<h2 id="functions">Functions</h2>
+<h3 id="unnormalize_to_hwc">unnormalize_to_hwc</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">unnormalize_to_hwc</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+    <span class="n">mean</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span>
+    <span class="n">std</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>
+</code></pre></div>
+
+<p>Unnormalizes and a normlized image tensor [0, 1] CHW -&gt; HWC [0, 255]</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>image</td>
+<td>torch.Tensor</td>
+<td>Normalized image</td>
+<td>None</td>
+</tr>
+<tr>
+<td>mean</td>
+<td>List[float]</td>
+<td>RGB averages used in normalization, by default [0.485, 0.456, 0.406] from imagenet1k</td>
+<td>None</td>
+</tr>
+<tr>
+<td>std</td>
+<td>List[float]</td>
+<td>RGB standard deviations used in normalization, by default [0.229, 0.224, 0.225] from imagenet1k</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>np.ndarray</td>
+<td>Unnormalized image as numpy array</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">unnormalize_to_hwc</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">    </span><span class="nc">image</span><span class="err">:</span><span class="w"> </span><span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">,</span><span class="w"> </span><span class="nl">mean</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">float</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">0.485, 0.456, 0.406</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="nl">std</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">float</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">0.229, 0.224, 0.225</span><span class="o">]</span><span class="w"></span>
+
+<span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="nl">ndarray</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Unnormalizes and a normlized image tensor [0, 1] CHW -&gt; HWC [0, 255]</span>
+
+<span class="ss">    Parameters</span>
+
+<span class="ss">    ----------</span>
+
+<span class="ss">    image : torch.Tensor</span>
+
+<span class="ss">        Normalized image</span>
+
+<span class="ss">    mean : List[float], optional</span>
+
+<span class="ss">        RGB averages used in normalization, by default [0.485, 0.456, 0.406] from imagenet1k</span>
+
+<span class="ss">    std : List[float], optional</span>
+
+<span class="ss">        RGB standard deviations used in normalization, by default [0.229, 0.224, 0.225] from imagenet1k</span>
+
+<span class="ss">    Returns</span>
+
+<span class="ss">    -------</span>
+
+<span class="ss">    np.ndarray</span>
+
+<span class="ss">        Unnormalized image as numpy array</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="nc">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">image</span><span class="p">.</span><span class="n">numpy</span><span class="p">().</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">HWC</span><span class="w"></span>
+
+<span class="w">    </span><span class="nc">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nc">image</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">mean</span><span class="p">).</span><span class="n">clip</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="nc">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nc">image</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">255</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nc">image</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="visualize">visualize</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">visualize</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">bboxes</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="n">category_ids</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="n">colors</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="n">titles</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="n">category_id_to_name</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;crazing&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;inclusion&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;pitted_surface&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;patches&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;rolled-in_scale&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;scratches&#39;</span><span class="p">},</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+<p>Applies the bounding boxes and category ids to an image</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>image</td>
+<td>np.ndarray</td>
+<td>Image as numpy array</td>
+<td>None</td>
+</tr>
+<tr>
+<td>bboxes</td>
+<td>Iterable[Union[torch.Tensor, np.ndarray]]</td>
+<td>Bouding boxes, by default []</td>
+<td>None</td>
+</tr>
+<tr>
+<td>category_ids</td>
+<td>Iterable[Union[torch.Tensor, np.ndarray]]</td>
+<td>Category ids, by default []</td>
+<td>None</td>
+</tr>
+<tr>
+<td>colors</td>
+<td>Iterable[Tuple[int, int, int]]</td>
+<td>Colors for each bounding box, by default [()]</td>
+<td>None</td>
+</tr>
+<tr>
+<td>titles</td>
+<td>Iterable[str]</td>
+<td>Titles for each image, by default []</td>
+<td>None</td>
+</tr>
+<tr>
+<td>category_id_to_name</td>
+<td>Dict[str, str]</td>
+<td>Dictionary of category ids to names, by default CATEGORY_ID_TO_NAME</td>
+<td>CATEGORY_ID_TO_NAME</td>
+</tr>
+<tr>
+<td>dpi</td>
+<td>int</td>
+<td>DPI for clarity, by default 150</td>
+<td>150</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">visualize</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">    </span><span class="nc">image</span><span class="err">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">bboxes</span><span class="p">:</span><span class="w"> </span><span class="n">Iterable</span><span class="o">[</span><span class="n">Union[torch.Tensor, np.ndarray</span><span class="o">]</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">category_ids</span><span class="p">:</span><span class="w"> </span><span class="n">Iterable</span><span class="o">[</span><span class="n">Union[torch.Tensor, np.ndarray</span><span class="o">]</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">colors</span><span class="p">:</span><span class="w"> </span><span class="n">Iterable</span><span class="o">[</span><span class="n">Tuple[int, int, int</span><span class="o">]</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">titles</span><span class="p">:</span><span class="w"> </span><span class="n">Iterable</span><span class="o">[</span><span class="n">str</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">category_id_to_name</span><span class="o">=</span><span class="n">CATEGORY_ID_TO_NAME</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span><span class="w"></span>
+
+<span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Applies the bounding boxes and category ids to an image</span>
+
+<span class="ss">    Parameters</span>
+
+<span class="ss">    ----------</span>
+
+<span class="ss">    image : np.ndarray</span>
+
+<span class="ss">        Image as numpy array</span>
+
+<span class="ss">    bboxes : Iterable[Union[torch.Tensor, np.ndarray]], optional</span>
+
+<span class="ss">        Bouding boxes, by default []</span>
+
+<span class="ss">    category_ids : Iterable[Union[torch.Tensor, np.ndarray]], optional</span>
+
+<span class="ss">        Category ids, by default []</span>
+
+<span class="ss">    colors : Iterable[Tuple[int, int, int]], optional</span>
+
+<span class="ss">        Colors for each bounding box, by default [()]</span>
+
+<span class="ss">    titles : Iterable[str], optional</span>
+
+<span class="ss">        Titles for each image, by default []</span>
+
+<span class="ss">    category_id_to_name : Dict[str, str], optional</span>
+
+<span class="ss">        Dictionary of category ids to names, by default CATEGORY_ID_TO_NAME</span>
+
+<span class="ss">    dpi : int, optional</span>
+
+<span class="ss">        DPI for clarity, by default 150</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">bboxes</span><span class="p">,</span><span class="w"> </span><span class="n">category_ids</span><span class="p">,</span><span class="w"> </span><span class="n">colors</span><span class="p">,</span><span class="w"> </span><span class="n">titles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="k">map</span><span class="p">(</span><span class="n">list</span><span class="p">,</span><span class="w"> </span><span class="o">[</span><span class="n">bboxes, category_ids, colors, titles</span><span class="o">]</span><span class="p">))</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="k">ignore</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">bboxes</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">assert</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">category_ids</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">titles</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">),</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;number of bboxes, category ids, colors and titles (minus one) do not match&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="n">dpi</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">ncols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">image</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">plt</span><span class="p">.</span><span class="n">axis</span><span class="p">(</span><span class="ss">&quot;off&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="nc">image</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">bboxes</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">titles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">titles</span><span class="o">[</span><span class="n">1:</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">image</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">plt</span><span class="p">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">ncols</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">plt</span><span class="p">.</span><span class="n">axis</span><span class="p">(</span><span class="ss">&quot;off&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="n">titles</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">bbox</span><span class="p">,</span><span class="w"> </span><span class="n">category_id</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">zip</span><span class="p">(</span><span class="n">bboxes</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">category_ids</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">)</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="nl">type</span><span class="p">:</span><span class="w"> </span><span class="k">ignore</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="n">bbox</span><span class="p">,</span><span class="w"> </span><span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">bbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bbox</span><span class="p">.</span><span class="n">numpy</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="n">category_id</span><span class="p">,</span><span class="w"> </span><span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">category_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">category_id</span><span class="p">.</span><span class="n">numpy</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="n">category_id</span><span class="p">,</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">category_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">category_id</span><span class="p">.</span><span class="n">item</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">class_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">category_id_to_name</span><span class="o">[</span><span class="n">category_id</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">img</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">visualize_bbox</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="n">bbox</span><span class="p">,</span><span class="w"> </span><span class="n">class_name</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="visualize_bbox">visualize_bbox</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">visualize_bbox</span><span class="p">(</span>
+    <span class="n">img</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">bbox</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">color</span><span class="p">,</span>
+    <span class="n">thickness</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>
+</code></pre></div>
+
+<p>Uses cv2 to draw colored bounding boxes and class names in an image</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>img</td>
+<td>np.ndarray</td>
+<td>[description]</td>
+<td>None</td>
+</tr>
+<tr>
+<td>bbox</td>
+<td>np.ndarray</td>
+<td>[description]</td>
+<td>None</td>
+</tr>
+<tr>
+<td>class_name</td>
+<td>str</td>
+<td>Class name</td>
+<td>None</td>
+</tr>
+<tr>
+<td>color</td>
+<td>tuple</td>
+<td>BGR tuple</td>
+<td>None</td>
+</tr>
+<tr>
+<td>thickness</td>
+<td>int</td>
+<td>Bouding box thickness, by default 2</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">visualize_bbox</span><span class="p">(</span><span class="nl">img</span><span class="p">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span><span class="w"> </span><span class="nl">bbox</span><span class="p">:</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">,</span><span class="w"> </span><span class="nl">class_name</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="nl">thickness</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="nl">ndarray</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Uses cv2 to draw colored bounding boxes and class names in an image</span>
+
+<span class="ss">    Parameters</span>
+
+<span class="ss">    ----------</span>
+
+<span class="ss">    img : np.ndarray</span>
+
+<span class="ss">        [description]</span>
+
+<span class="ss">    bbox : np.ndarray</span>
+
+<span class="ss">        [description]</span>
+
+<span class="ss">    class_name : str</span>
+
+<span class="ss">        Class name</span>
+
+<span class="ss">    color : tuple</span>
+
+<span class="ss">        BGR tuple</span>
+
+<span class="ss">    thickness : int, optional</span>
+
+<span class="ss">        Bouding box thickness, by default 2</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">x_min</span><span class="p">,</span><span class="w"> </span><span class="n">y_min</span><span class="p">,</span><span class="w"> </span><span class="n">x_max</span><span class="p">,</span><span class="w"> </span><span class="n">y_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tuple</span><span class="p">(</span><span class="k">map</span><span class="p">(</span><span class="nc">int</span><span class="p">,</span><span class="w"> </span><span class="n">bbox</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">cv2</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span><span class="w"> </span><span class="n">y_min</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="n">x_max</span><span class="p">,</span><span class="w"> </span><span class="n">y_max</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">thickness</span><span class="o">=</span><span class="n">thickness</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">((</span><span class="n">text_width</span><span class="p">,</span><span class="w"> </span><span class="n">text_height</span><span class="p">),</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cv2</span><span class="p">.</span><span class="n">getTextSize</span><span class="p">(</span><span class="n">class_name</span><span class="p">,</span><span class="w"> </span><span class="n">cv2</span><span class="p">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span><span class="w"> </span><span class="mf">0.35</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">cv2</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span><span class="w"> </span><span class="n">y_min</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nc">int</span><span class="p">(</span><span class="mf">1.3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">text_height</span><span class="p">)),</span><span class="w"> </span><span class="p">(</span><span class="n">x_min</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">text_width</span><span class="p">,</span><span class="w"> </span><span class="n">y_min</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">cv2</span><span class="p">.</span><span class="n">putText</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">img</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="nc">text</span><span class="o">=</span><span class="n">class_name</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">org</span><span class="o">=</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span><span class="w"> </span><span class="n">y_min</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nc">int</span><span class="p">(</span><span class="mf">0.3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">text_height</span><span class="p">)),</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">fontFace</span><span class="o">=</span><span class="n">cv2</span><span class="p">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">fontScale</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">color</span><span class="o">=</span><span class="n">TEXT_COLOR</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">lineType</span><span class="o">=</span><span class="n">cv2</span><span class="p">.</span><span class="n">LINE_AA</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">img</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../" title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Index
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

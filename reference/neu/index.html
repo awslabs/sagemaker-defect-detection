@@ -1,0 +1,1202 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../docs/sagemaker.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Neu - sagemaker-defect-detection</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="dark-blue" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-neu" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="sagemaker-defect-detection" class="md-header__button md-logo" aria-label="sagemaker-defect-detection" data-md-component="logo">
+      
+  <img src="../../docs/sagemaker.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sagemaker-defect-detection
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Neu
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/awslabs/sagemaker-defect-detection/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sagemaker-defect-detection
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="sagemaker-defect-detection" class="md-nav__button md-logo" aria-label="sagemaker-defect-detection" data-md-component="logo">
+      
+  <img src="../../docs/sagemaker.png" alt="logo">
+
+    </a>
+    sagemaker-defect-detection
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/awslabs/sagemaker-defect-detection/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sagemaker-defect-detection
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CODE_OF_CONDUCT/" class="md-nav__link">
+        Code Of Conduct
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Neu
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Neu
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cp_class_images" class="md-nav__link">
+    cp_class_images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cp_image_annotation" class="md-nav__link">
+    cp_image_annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main" class="md-nav__link">
+    main
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unpack" class="md-nav__link">
+    unpack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Sagemaker Defect Detection
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Sagemaker Defect Detection" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Sagemaker Defect Detection
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/classifier/" class="md-nav__link">
+        Classifier
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/detector/" class="md-nav__link">
+        Detector
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/transforms/" class="md-nav__link">
+        Transforms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_5" type="checkbox" id="__nav_4_2_5" >
+      
+      <label class="md-nav__link" for="__nav_4_2_5">
+        Dataset
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dataset" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Dataset
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/dataset/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/dataset/neu/" class="md-nav__link">
+        Neu
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_6" type="checkbox" id="__nav_4_2_6" >
+      
+      <label class="md-nav__link" for="__nav_4_2_6">
+        Models
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Models" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/models/ddn/" class="md-nav__link">
+        Ddn
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/models/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_7" type="checkbox" id="__nav_4_2_7" >
+      
+      <label class="md-nav__link" for="__nav_4_2_7">
+        Utils
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Utils" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/utils/coco_eval/" class="md-nav__link">
+        Coco Eval
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/utils/coco_utils/" class="md-nav__link">
+        Coco Utils
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/utils/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sagemaker_defect_detection/utils/visualize/" class="md-nav__link">
+        Visualize
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cp_class_images" class="md-nav__link">
+    cp_class_images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cp_image_annotation" class="md-nav__link">
+    cp_image_annotation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main" class="md-nav__link">
+    main
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unpack" class="md-nav__link">
+    unpack
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/awslabs/sagemaker-defect-detection/edit/main/reference/neu.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-neu">Module neu</h1>
+<p>Dependencies: unzip unrar</p>
+<p>python -m pip install patool pyunpack</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">Dependencies: unzip unrar</span>
+
+<span class="sd">python -m pip install patool pyunpack</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">shutil</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">try</span><span class="p">:</span>
+
+    <span class="kn">from</span> <span class="nn">pyunpack</span> <span class="kn">import</span> <span class="n">Archive</span>
+
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;installing the dependencies `patool` and `pyunpack` for unzipping the data&quot;</span><span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">subprocess</span>
+
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;python -m pip install patool==1.12 pyunpack==0.2.1 -q&quot;</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="kn">from</span> <span class="nn">pyunpack</span> <span class="kn">import</span> <span class="n">Archive</span>
+
+<span class="n">CLASSES</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="s2">&quot;crazing&quot;</span><span class="p">:</span> <span class="s2">&quot;Cr&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;inclusion&quot;</span><span class="p">:</span> <span class="s2">&quot;In&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;pitted_surface&quot;</span><span class="p">:</span> <span class="s2">&quot;PS&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;patches&quot;</span><span class="p">:</span> <span class="s2">&quot;Pa&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;rolled-in_scale&quot;</span><span class="p">:</span> <span class="s2">&quot;RS&quot;</span><span class="p">,</span>
+
+    <span class="s2">&quot;scratches&quot;</span><span class="p">:</span> <span class="s2">&quot;Sc&quot;</span><span class="p">,</span>
+
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">unpack</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="n">Archive</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="p">))</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">parent</span><span class="p">))</span>
+
+    <span class="k">return</span>
+
+<span class="k">def</span> <span class="nf">cp_class_images</span><span class="p">(</span><span class="n">data_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">class_path_dest</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="n">lst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data_path</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="s2">_*&quot;</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">img_file</span> <span class="ow">in</span> <span class="n">lst</span><span class="p">:</span>
+
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">img_file</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">class_path_dest</span> <span class="o">/</span> <span class="n">img_file</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">class_path_dest</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)))</span>
+
+    <span class="k">return</span>
+
+<span class="k">def</span> <span class="nf">cp_image_annotation</span><span class="p">(</span><span class="n">data_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">image_path_dest</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">annotation_path_dest</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="n">img_lst</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">((</span><span class="n">data_path</span> <span class="o">/</span> <span class="s2">&quot;IMAGES&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="s2">_*&quot;</span><span class="p">)))</span>
+
+    <span class="n">ann_lst</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">((</span><span class="n">data_path</span> <span class="o">/</span> <span class="s2">&quot;ANNOTATIONS&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="s2">_*&quot;</span><span class="p">)))</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_lst</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span>
+
+        <span class="n">ann_lst</span>
+
+    <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;images count </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">img_lst</span><span class="p">)</span><span class="si">}</span><span class="s2"> does not match with annotations count </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">ann_lst</span><span class="p">)</span><span class="si">}</span><span class="s2"> for class </span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">img_file</span><span class="p">,</span> <span class="n">ann_file</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">img_lst</span><span class="p">,</span> <span class="n">ann_lst</span><span class="p">):</span>
+
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">img_file</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">image_path_dest</span> <span class="o">/</span> <span class="n">img_file</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+        <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ann_file</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">annotation_path_dest</span> <span class="o">/</span> <span class="n">ann_file</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">image_path_dest</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)))</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">annotation_path_dest</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">)))</span>
+
+    <span class="k">return</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">data_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">archived</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Data preparation</span>
+
+<span class="sd">    Parameters</span>
+
+<span class="sd">    ----------</span>
+
+<span class="sd">    data_path : str</span>
+
+<span class="sd">        Raw data path</span>
+
+<span class="sd">    output_path : str</span>
+
+<span class="sd">        Output data path</span>
+
+<span class="sd">    archived: bool</span>
+
+<span class="sd">        Whether the file is archived or not (for testing)</span>
+
+<span class="sd">    Raises</span>
+
+<span class="sd">    ------</span>
+
+<span class="sd">    ValueError</span>
+
+<span class="sd">        If the packed data file is different from NEU-CLS or NEU-DET</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">data_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">archived</span><span class="p">:</span>
+
+        <span class="n">unpack</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+
+    <span class="n">data_path</span> <span class="o">=</span> <span class="n">data_path</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^[^.]*&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">data_path</span><span class="o">.</span><span class="n">name</span><span class="p">))</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data_path</span> <span class="o">/</span> <span class="s2">&quot;Thumbs.db&quot;</span><span class="p">))</span>
+
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Thumbs.db is not found. Continuing ...&quot;</span><span class="p">)</span>
+
+        <span class="k">pass</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">: Unknown error!&quot;</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="n">e</span>
+
+    <span class="n">output_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">data_path</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;NEU-CLS&quot;</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">cls_</span> <span class="ow">in</span> <span class="n">CLASSES</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+
+            <span class="n">cls_path</span> <span class="o">=</span> <span class="n">output_path</span> <span class="o">/</span> <span class="n">cls_</span>
+
+            <span class="n">cls_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">cp_class_images</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">cls_</span><span class="p">,</span> <span class="n">cls_path</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">data_path</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;NEU-DET&quot;</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">cls_</span> <span class="ow">in</span> <span class="n">CLASSES</span><span class="p">:</span>
+
+            <span class="n">cls_path</span> <span class="o">=</span> <span class="n">output_path</span> <span class="o">/</span> <span class="n">CLASSES</span><span class="p">[</span><span class="n">cls_</span><span class="p">]</span>
+
+            <span class="n">image_path</span> <span class="o">=</span> <span class="n">cls_path</span> <span class="o">/</span> <span class="s2">&quot;images&quot;</span>
+
+            <span class="n">image_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">annotation_path</span> <span class="o">=</span> <span class="n">cls_path</span> <span class="o">/</span> <span class="s2">&quot;annotations&quot;</span>
+
+            <span class="n">annotation_path</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="n">cp_image_annotation</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">cls_</span><span class="p">,</span> <span class="n">image_path</span><span class="p">,</span> <span class="n">annotation_path</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown data. Choose between `NEU-CLS` and `NEU-DET`. Given </span><span class="si">{</span><span class="n">data_path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="kn">import</span> <span class="nn">sys</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Provide `data_path` and `output_path`&quot;</span><span class="p">)</span>
+
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">main</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h2 id="variables">Variables</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">CLASSES</span>
+</code></pre></div>
+
+<h2 id="functions">Functions</h2>
+<h3 id="cp_class_images">cp_class_images</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">cp_class_images</span><span class="p">(</span>
+    <span class="n">data_path</span><span class="p">:</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span>
+    <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">class_path_dest</span><span class="p">:</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">cp_class_images</span><span class="p">(</span><span class="n">data_path</span><span class="o">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">class_name</span><span class="o">:</span> <span class="n">str</span><span class="p">,</span> <span class="n">class_path_dest</span><span class="o">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">None</span><span class="o">:</span>
+
+    <span class="n">lst</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">data_path</span><span class="p">.</span><span class="n">rglob</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;{class_name}_*&quot;</span><span class="p">))</span>
+
+    <span class="n">for</span> <span class="n">img_file</span> <span class="kr">in</span> <span class="n">lst</span><span class="o">:</span>
+
+        <span class="n">shutil</span><span class="p">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">img_file</span><span class="p">),</span> <span class="n">str</span><span class="p">(</span><span class="n">class_path_dest</span> <span class="o">/</span> <span class="n">img_file</span><span class="p">.</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="kr">assert</span> <span class="n">len</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> <span class="o">==</span> <span class="n">len</span><span class="p">(</span><span class="n">list</span><span class="p">(</span><span class="n">class_path_dest</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="s">&quot;*&quot;</span><span class="p">)))</span>
+
+    <span class="kr">return</span>
+</code></pre></div>
+
+</details>
+<h3 id="cp_image_annotation">cp_image_annotation</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">cp_image_annotation</span><span class="p">(</span>
+    <span class="n">data_path</span><span class="p">:</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span>
+    <span class="n">class_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">image_path_dest</span><span class="p">:</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span>
+    <span class="n">annotation_path_dest</span><span class="p">:</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">cp_image_annotation</span><span class="p">(</span><span class="n">data_path</span><span class="o">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">class_name</span><span class="o">:</span> <span class="n">str</span><span class="p">,</span> <span class="n">image_path_dest</span><span class="o">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">annotation_path_dest</span><span class="o">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">None</span><span class="o">:</span>
+
+    <span class="n">img_lst</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">list</span><span class="p">((</span><span class="n">data_path</span> <span class="o">/</span> <span class="s">&quot;IMAGES&quot;</span><span class="p">).</span><span class="n">rglob</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;{class_name}_*&quot;</span><span class="p">)))</span>
+
+    <span class="n">ann_lst</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">list</span><span class="p">((</span><span class="n">data_path</span> <span class="o">/</span> <span class="s">&quot;ANNOTATIONS&quot;</span><span class="p">).</span><span class="n">rglob</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;{class_name}_*&quot;</span><span class="p">)))</span>
+
+    <span class="kr">assert</span> <span class="n">len</span><span class="p">(</span><span class="n">img_lst</span><span class="p">)</span> <span class="o">==</span> <span class="n">len</span><span class="p">(</span>
+
+        <span class="n">ann_lst</span>
+
+    <span class="p">),</span> <span class="n">f</span><span class="s">&quot;images count {len(img_lst)} does not match with annotations count {len(ann_lst)} for class {class_name}&quot;</span>
+
+    <span class="n">for</span> <span class="p">(</span><span class="n">img_file</span><span class="p">,</span> <span class="n">ann_file</span><span class="p">)</span> <span class="kr">in</span> <span class="n">zip</span><span class="p">(</span><span class="n">img_lst</span><span class="p">,</span> <span class="n">ann_lst</span><span class="p">)</span><span class="o">:</span>
+
+        <span class="n">shutil</span><span class="p">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">img_file</span><span class="p">),</span> <span class="n">str</span><span class="p">(</span><span class="n">image_path_dest</span> <span class="o">/</span> <span class="n">img_file</span><span class="p">.</span><span class="n">name</span><span class="p">))</span>
+
+        <span class="n">shutil</span><span class="p">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">ann_file</span><span class="p">),</span> <span class="n">str</span><span class="p">(</span><span class="n">annotation_path_dest</span> <span class="o">/</span> <span class="n">ann_file</span><span class="p">.</span><span class="n">name</span><span class="p">))</span>
+
+    <span class="kr">assert</span> <span class="n">len</span><span class="p">(</span><span class="n">list</span><span class="p">(</span><span class="n">image_path_dest</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="s">&quot;*&quot;</span><span class="p">)))</span> <span class="o">==</span> <span class="n">len</span><span class="p">(</span><span class="n">list</span><span class="p">(</span><span class="n">annotation_path_dest</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="s">&quot;*&quot;</span><span class="p">)))</span>
+
+    <span class="kr">return</span>
+</code></pre></div>
+
+</details>
+<h3 id="main">main</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">main</span><span class="p">(</span>
+    <span class="n">data_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">output_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">archived</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+<p>Data preparation</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data_path</td>
+<td>str</td>
+<td>Raw data path</td>
+<td>None</td>
+</tr>
+<tr>
+<td>output_path</td>
+<td>str</td>
+<td>Output data path</td>
+<td>None</td>
+</tr>
+<tr>
+<td>archived</td>
+<td>bool</td>
+<td>Whether the file is archived or not (for testing)</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Raises:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ValueError</td>
+<td>If the packed data file is different from NEU-CLS or NEU-DET</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="nl">data_path</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">,</span><span class="w"> </span><span class="nl">output_path</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">,</span><span class="w"> </span><span class="nl">archived</span><span class="p">:</span><span class="w"> </span><span class="n">bool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">True</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Data preparation</span>
+
+<span class="ss">    Parameters</span>
+
+<span class="ss">    ----------</span>
+
+<span class="ss">    data_path : str</span>
+
+<span class="ss">        Raw data path</span>
+
+<span class="ss">    output_path : str</span>
+
+<span class="ss">        Output data path</span>
+
+<span class="ss">    archived: bool</span>
+
+<span class="ss">        Whether the file is archived or not (for testing)</span>
+
+<span class="ss">    Raises</span>
+
+<span class="ss">    ------</span>
+
+<span class="ss">    ValueError</span>
+
+<span class="ss">        If the packed data file is different from NEU-CLS or NEU-DET</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">data_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">Path</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nl">archived</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">unpack</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">data_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_path</span><span class="p">.</span><span class="n">parent</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">re</span><span class="p">.</span><span class="k">search</span><span class="p">(</span><span class="n">r</span><span class="ss">&quot;^[^.]*&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">str</span><span class="p">(</span><span class="n">data_path</span><span class="p">.</span><span class="n">name</span><span class="p">)).</span><span class="k">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">os</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">data_path</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="ss">&quot;Thumbs.db&quot;</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="ow">except</span><span class="w"> </span><span class="nl">FileNotFoundError</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Thumbs.db is not found. Continuing ...&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">pass</span><span class="w"></span>
+
+<span class="w">    </span><span class="ow">except</span><span class="w"> </span><span class="k">Exception</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nl">e</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;{e}: Unknown error!&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">raise</span><span class="w"> </span><span class="n">e</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">output_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">Path</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">data_path</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;NEU-CLS&quot;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">cls_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">CLASSES</span><span class="p">.</span><span class="k">values</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">cls_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output_path</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">cls_</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">cls_path</span><span class="p">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="k">True</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">cp_class_images</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span><span class="w"> </span><span class="n">cls_</span><span class="p">,</span><span class="w"> </span><span class="n">cls_path</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">elif</span><span class="w"> </span><span class="n">data_path</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;NEU-DET&quot;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">cls_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">CLASSES</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">cls_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">output_path</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">CLASSES</span><span class="o">[</span><span class="n">cls_</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">image_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls_path</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="ss">&quot;images&quot;</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">image_path</span><span class="p">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="k">True</span><span class="p">,</span><span class="w"> </span><span class="n">exist_ok</span><span class="o">=</span><span class="k">True</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">annotation_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cls_path</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="ss">&quot;annotations&quot;</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">annotation_path</span><span class="p">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="k">True</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">cp_image_annotation</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span><span class="w"> </span><span class="n">cls_</span><span class="p">,</span><span class="w"> </span><span class="n">image_path</span><span class="p">,</span><span class="w"> </span><span class="n">annotation_path</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">raise</span><span class="w"> </span><span class="n">ValueError</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Unknown data. Choose between `NEU-CLS` and `NEU-DET`. Given {data_path.name}&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="unpack">unpack</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">unpack</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">unpack</span><span class="p">(</span><span class="n">path</span><span class="o">:</span> <span class="n">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">None</span><span class="o">:</span>
+
+    <span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="n">Archive</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">path</span><span class="p">)).</span><span class="n">extractall</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="n">parent</span><span class="p">))</span>
+
+    <span class="kr">return</span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../CONTRIBUTING/" title="Contributing" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Contributing
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../sagemaker_defect_detection/classifier/" title="Classifier" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Classifier
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2259 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../docs/sagemaker.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.4">
+    
+    
+      
+        <title>Coco Eval - sagemaker-defect-detection</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="dark-blue" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-sagemaker_defect_detectionutilscoco_eval" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="sagemaker-defect-detection" class="md-header__button md-logo" aria-label="sagemaker-defect-detection" data-md-component="logo">
+      
+  <img src="../../../../docs/sagemaker.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            sagemaker-defect-detection
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Coco Eval
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/awslabs/sagemaker-defect-detection/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sagemaker-defect-detection
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="sagemaker-defect-detection" class="md-nav__button md-logo" aria-label="sagemaker-defect-detection" data-md-component="logo">
+      
+  <img src="../../../../docs/sagemaker.png" alt="logo">
+
+    </a>
+    sagemaker-defect-detection
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/awslabs/sagemaker-defect-detection/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    sagemaker-defect-detection
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../CODE_OF_CONDUCT/" class="md-nav__link">
+        Code Of Conduct
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../CONTRIBUTING/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      <label class="md-nav__link" for="__nav_4">
+        Reference
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../neu/" class="md-nav__link">
+        Neu
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
+      
+      <label class="md-nav__link" for="__nav_4_2">
+        Sagemaker Defect Detection
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Sagemaker Defect Detection" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Sagemaker Defect Detection
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classifier/" class="md-nav__link">
+        Classifier
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../detector/" class="md-nav__link">
+        Detector
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../transforms/" class="md-nav__link">
+        Transforms
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_5" type="checkbox" id="__nav_4_2_5" >
+      
+      <label class="md-nav__link" for="__nav_4_2_5">
+        Dataset
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dataset" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Dataset
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dataset/neu/" class="md-nav__link">
+        Neu
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_6" type="checkbox" id="__nav_4_2_6" >
+      
+      <label class="md-nav__link" for="__nav_4_2_6">
+        Models
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Models" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/ddn/" class="md-nav__link">
+        Ddn
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../models/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_7" type="checkbox" id="__nav_4_2_7" checked>
+      
+      <label class="md-nav__link" for="__nav_4_2_7">
+        Utils
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Utils" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Utils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Coco Eval
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Coco Eval
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#all_gather" class="md-nav__link">
+    all_gather
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert_to_xywh" class="md-nav__link">
+    convert_to_xywh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createindex" class="md-nav__link">
+    createIndex
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_common_coco_eval" class="md-nav__link">
+    create_common_coco_eval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluate" class="md-nav__link">
+    evaluate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_world_size" class="md-nav__link">
+    get_world_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is_dist_avail_and_initialized" class="md-nav__link">
+    is_dist_avail_and_initialized
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loadres" class="md-nav__link">
+    loadRes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    merge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cocoevaluator" class="md-nav__link">
+    CocoEvaluator
+  </a>
+  
+    <nav class="md-nav" aria-label="CocoEvaluator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accumulate" class="md-nav__link">
+    accumulate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare" class="md-nav__link">
+    prepare
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare_for_coco_detection" class="md-nav__link">
+    prepare_for_coco_detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summarize" class="md-nav__link">
+    summarize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synchronize_between_processes" class="md-nav__link">
+    synchronize_between_processes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    update
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coco_utils/" class="md-nav__link">
+        Coco Utils
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visualize/" class="md-nav__link">
+        Visualize
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#all_gather" class="md-nav__link">
+    all_gather
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert_to_xywh" class="md-nav__link">
+    convert_to_xywh
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createindex" class="md-nav__link">
+    createIndex
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create_common_coco_eval" class="md-nav__link">
+    create_common_coco_eval
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluate" class="md-nav__link">
+    evaluate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_world_size" class="md-nav__link">
+    get_world_size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is_dist_avail_and_initialized" class="md-nav__link">
+    is_dist_avail_and_initialized
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loadres" class="md-nav__link">
+    loadRes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    merge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cocoevaluator" class="md-nav__link">
+    CocoEvaluator
+  </a>
+  
+    <nav class="md-nav" aria-label="CocoEvaluator">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accumulate" class="md-nav__link">
+    accumulate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare" class="md-nav__link">
+    prepare
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare_for_coco_detection" class="md-nav__link">
+    prepare_for_coco_detection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summarize" class="md-nav__link">
+    summarize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#synchronize_between_processes" class="md-nav__link">
+    synchronize_between_processes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update" class="md-nav__link">
+    update
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/awslabs/sagemaker-defect-detection/edit/main/reference/sagemaker_defect_detection/utils/coco_eval.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-sagemaker_defect_detectionutilscoco_eval">Module sagemaker_defect_detection.utils.coco_eval</h1>
+<p>BSD 3-Clause License</p>
+<p>Copyright (c) Soumith Chintala 2016,
+All rights reserved.</p>
+<p>Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:</p>
+<ul>
+<li>
+<p>Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.</p>
+</li>
+<li>
+<p>Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.</p>
+</li>
+<li>
+<p>Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.</p>
+</li>
+</ul>
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
+<p>This module is a modified version of https://github.com/pytorch/vision/tree/03b1d38ba3c67703e648fb067570eeb1a1e61265/references/detection</p>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">BSD 3-Clause License</span>
+
+<span class="sd">Copyright (c) Soumith Chintala 2016,</span>
+
+<span class="sd">All rights reserved.</span>
+
+<span class="sd">Redistribution and use in source and binary forms, with or without</span>
+
+<span class="sd">modification, are permitted provided that the following conditions are met:</span>
+
+<span class="sd">* Redistributions of source code must retain the above copyright notice, this</span>
+
+<span class="sd">  list of conditions and the following disclaimer.</span>
+
+<span class="sd">* Redistributions in binary form must reproduce the above copyright notice,</span>
+
+<span class="sd">  this list of conditions and the following disclaimer in the documentation</span>
+
+<span class="sd">  and/or other materials provided with the distribution.</span>
+
+<span class="sd">* Neither the name of the copyright holder nor the names of its</span>
+
+<span class="sd">  contributors may be used to endorse or promote products derived from</span>
+
+<span class="sd">  this software without specific prior written permission.</span>
+
+<span class="sd">THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;</span>
+
+<span class="sd">AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE</span>
+
+<span class="sd">IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span>
+
+<span class="sd">DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE</span>
+
+<span class="sd">FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL</span>
+
+<span class="sd">DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR</span>
+
+<span class="sd">SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER</span>
+
+<span class="sd">CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,</span>
+
+<span class="sd">OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE</span>
+
+<span class="sd">OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span>
+
+<span class="sd">This module is a modified version of https://github.com/pytorch/vision/tree/03b1d38ba3c67703e648fb067570eeb1a1e61265/references/detection</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">import</span> <span class="n">json</span>
+
+<span class="n">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">import</span> <span class="n">copy</span>
+
+<span class="n">import</span> <span class="n">torch</span>
+
+<span class="n">import</span> <span class="n">pickle</span>
+
+<span class="n">import</span> <span class="n">torch</span><span class="o">.</span><span class="n">distributed</span> <span class="k">as</span> <span class="n">dist</span>
+
+<span class="n">from</span> <span class="n">pycocotools</span><span class="o">.</span><span class="n">cocoeval</span> <span class="n">import</span> <span class="n">COCOeval</span>
+
+<span class="n">from</span> <span class="n">pycocotools</span><span class="o">.</span><span class="n">coco</span> <span class="n">import</span> <span class="n">COCO</span>
+
+<span class="n">import</span> <span class="n">pycocotools</span><span class="o">.</span><span class="n">mask</span> <span class="k">as</span> <span class="n">mask_util</span>
+
+<span class="n">from</span> <span class="n">collections</span> <span class="n">import</span> <span class="n">defaultdict</span>
+
+<span class="n">def</span> <span class="n">is_dist_avail_and_initialized</span><span class="p">():</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">dist</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+
+        <span class="k">return</span> <span class="n">False</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">dist</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">():</span>
+
+        <span class="k">return</span> <span class="n">False</span>
+
+    <span class="k">return</span> <span class="n">True</span>
+
+<span class="n">def</span> <span class="n">get_world_size</span><span class="p">():</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_dist_avail_and_initialized</span><span class="p">():</span>
+
+        <span class="k">return</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">dist</span><span class="o">.</span><span class="n">get_world_size</span><span class="p">()</span>
+
+<span class="n">def</span> <span class="n">all_gather</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Run all_gather on arbitrary picklable data (not necessarily tensors)</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        data: any picklable object</span>
+
+<span class="sd">    Returns:</span>
+
+<span class="sd">        list[data]: list of data gathered from each rank</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">world_size</span> <span class="o">=</span> <span class="n">get_world_size</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">world_size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">data</span><span class="p">]</span>
+
+    <span class="c1"># serialized to a Tensor</span>
+
+    <span class="n">buffer</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="n">storage</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ByteStorage</span><span class="o">.</span><span class="n">from_buffer</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+
+    <span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ByteTensor</span><span class="p">(</span><span class="n">storage</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+
+    <span class="c1"># obtain Tensor size of each rank</span>
+
+    <span class="n">local_size</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">tensor</span><span class="o">.</span><span class="n">numel</span><span class="p">()],</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+
+    <span class="n">size_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">world_size</span><span class="p">)]</span>
+
+    <span class="n">dist</span><span class="o">.</span><span class="n">all_gather</span><span class="p">(</span><span class="n">size_list</span><span class="p">,</span> <span class="n">local_size</span><span class="p">)</span>
+
+    <span class="n">size_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb nb-Type">int</span><span class="p">(</span><span class="n">size</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">size_list</span><span class="p">]</span>
+
+    <span class="n">max_size</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">size_list</span><span class="p">)</span>
+
+    <span class="c1"># receiving Tensor from all ranks</span>
+
+    <span class="c1"># we pad the tensor because torch all_gather does not support</span>
+
+    <span class="c1"># gathering tensors of different shapes</span>
+
+    <span class="n">tensor_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">size_list</span><span class="p">:</span>
+
+        <span class="n">tensor_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">max_size</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cuda&quot;</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">local_size</span> <span class="o">!=</span> <span class="n">max_size</span><span class="p">:</span>
+
+        <span class="n">padding</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">max_size</span> <span class="o">-</span> <span class="n">local_size</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+
+        <span class="n">tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">tensor</span><span class="p">,</span> <span class="n">padding</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">dist</span><span class="o">.</span><span class="n">all_gather</span><span class="p">(</span><span class="n">tensor_list</span><span class="p">,</span> <span class="n">tensor</span><span class="p">)</span>
+
+    <span class="n">data_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">size</span><span class="p">,</span> <span class="n">tensor</span> <span class="ow">in</span> <span class="n">zip</span><span class="p">(</span><span class="n">size_list</span><span class="p">,</span> <span class="n">tensor_list</span><span class="p">):</span>
+
+        <span class="n">buffer</span> <span class="o">=</span> <span class="n">tensor</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()[:</span><span class="n">size</span><span class="p">]</span>
+
+        <span class="n">data_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">buffer</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">data_list</span>
+
+<span class="k">class</span> <span class="n">CocoEvaluator</span><span class="p">(</span><span class="n">object</span><span class="p">):</span>
+
+    <span class="n">def</span> <span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coco_gt</span><span class="p">,</span> <span class="n">iou_types</span><span class="p">):</span>
+
+        <span class="nb">assert</span> <span class="n">isinstance</span><span class="p">(</span><span class="n">iou_types</span><span class="p">,</span> <span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="n">tuple</span><span class="p">))</span>
+
+        <span class="n">coco_gt</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">coco_gt</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">coco_gt</span> <span class="o">=</span> <span class="n">coco_gt</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">iou_types</span> <span class="o">=</span> <span class="n">iou_types</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">coco_eval</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">iou_type</span> <span class="ow">in</span> <span class="n">iou_types</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">coco_eval</span><span class="p">[</span><span class="n">iou_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">COCOeval</span><span class="p">(</span><span class="n">coco_gt</span><span class="p">,</span> <span class="n">iouType</span><span class="o">=</span><span class="n">iou_type</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">eval_imgs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">iou_types</span><span class="p">}</span>
+
+    <span class="n">def</span> <span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+
+        <span class="n">img_ids</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">list</span><span class="p">(</span><span class="n">predictions</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_ids</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">img_ids</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">iou_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iou_types</span><span class="p">:</span>
+
+            <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">iou_type</span><span class="p">)</span>
+
+            <span class="n">coco_dt</span> <span class="o">=</span> <span class="n">loadRes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coco_gt</span><span class="p">,</span> <span class="n">results</span><span class="p">)</span> <span class="k">if</span> <span class="n">results</span> <span class="k">else</span> <span class="n">COCO</span><span class="p">()</span>
+
+            <span class="n">coco_eval</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coco_eval</span><span class="p">[</span><span class="n">iou_type</span><span class="p">]</span>
+
+            <span class="n">coco_eval</span><span class="o">.</span><span class="n">cocoDt</span> <span class="o">=</span> <span class="n">coco_dt</span>
+
+            <span class="n">coco_eval</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">imgIds</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">img_ids</span><span class="p">)</span>
+
+            <span class="n">img_ids</span><span class="p">,</span> <span class="n">eval_imgs</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">coco_eval</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eval_imgs</span><span class="p">[</span><span class="n">iou_type</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">eval_imgs</span><span class="p">[</span><span class="n">iou_type</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval_imgs</span><span class="p">[</span><span class="n">iou_type</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">eval_imgs</span><span class="p">[</span><span class="n">iou_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eval_imgs</span><span class="p">)</span>
+
+    <span class="n">def</span> <span class="n">synchronize_between_processes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">iou_type</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iou_types</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">eval_imgs</span><span class="p">[</span><span class="n">iou_type</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">eval_imgs</span><span class="p">[</span><span class="n">iou_type</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+
+            <span class="n">create_common_coco_eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coco_eval</span><span class="p">[</span><span class="n">iou_type</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_ids</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eval_imgs</span><span class="p">[</span><span class="n">iou_type</span><span class="p">])</span>
+
+    <span class="n">def</span> <span class="n">accumulate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">coco_eval</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">coco_eval</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+
+            <span class="n">coco_eval</span><span class="o">.</span><span class="n">accumulate</span><span class="p">()</span>
+
+    <span class="n">def</span> <span class="n">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">iou_type</span><span class="p">,</span> <span class="n">coco_eval</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">coco_eval</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IoU metric: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">iou_type</span><span class="p">))</span>
+
+            <span class="n">coco_eval</span><span class="o">.</span><span class="n">summarize</span><span class="p">()</span>
+
+    <span class="n">def</span> <span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">iou_type</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepare_for_coco_detection</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+
+    <span class="n">def</span> <span class="n">prepare_for_coco_detection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+
+        <span class="n">coco_results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">original_id</span><span class="p">,</span> <span class="n">prediction</span> <span class="ow">in</span> <span class="n">predictions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+            <span class="k">if</span> <span class="n">len</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+
+                <span class="k">continue</span>
+
+            <span class="n">boxes</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;boxes&quot;</span><span class="p">]</span>
+
+            <span class="n">boxes</span> <span class="o">=</span> <span class="n">convert_to_xywh</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+            <span class="n">scores</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;scores&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s2">&quot;labels&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+            <span class="n">coco_results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+
+                <span class="p">[</span>
+
+                    <span class="p">{</span>
+
+                        <span class="s2">&quot;image_id&quot;</span><span class="p">:</span> <span class="n">original_id</span><span class="p">,</span>
+
+                        <span class="s2">&quot;category_id&quot;</span><span class="p">:</span> <span class="n">labels</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+
+                        <span class="s2">&quot;bbox&quot;</span><span class="p">:</span> <span class="n">box</span><span class="p">,</span>
+
+                        <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">scores</span><span class="p">[</span><span class="n">k</span><span class="p">],</span>
+
+                    <span class="p">}</span>
+
+                    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span>
+
+                <span class="p">]</span>
+
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">coco_results</span>
+
+<span class="n">def</span> <span class="n">convert_to_xywh</span><span class="p">(</span><span class="n">boxes</span><span class="p">):</span>
+
+    <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">boxes</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">def</span> <span class="n">merge</span><span class="p">(</span><span class="n">img_ids</span><span class="p">,</span> <span class="n">eval_imgs</span><span class="p">):</span>
+
+    <span class="n">all_img_ids</span> <span class="o">=</span> <span class="n">all_gather</span><span class="p">(</span><span class="n">img_ids</span><span class="p">)</span>
+
+    <span class="n">all_eval_imgs</span> <span class="o">=</span> <span class="n">all_gather</span><span class="p">(</span><span class="n">eval_imgs</span><span class="p">)</span>
+
+    <span class="n">merged_img_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">all_img_ids</span><span class="p">:</span>
+
+        <span class="n">merged_img_ids</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="n">merged_eval_imgs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">all_eval_imgs</span><span class="p">:</span>
+
+        <span class="n">merged_eval_imgs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="n">merged_img_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">merged_img_ids</span><span class="p">)</span>
+
+    <span class="n">merged_eval_imgs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">merged_eval_imgs</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># keep only unique (and in sorted order) images</span>
+
+    <span class="n">merged_img_ids</span><span class="p">,</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">merged_img_ids</span><span class="p">,</span> <span class="n">return_index</span><span class="o">=</span><span class="n">True</span><span class="p">)</span>
+
+    <span class="n">merged_eval_imgs</span> <span class="o">=</span> <span class="n">merged_eval_imgs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">idx</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">merged_img_ids</span><span class="p">,</span> <span class="n">merged_eval_imgs</span>
+
+<span class="n">def</span> <span class="n">create_common_coco_eval</span><span class="p">(</span><span class="n">coco_eval</span><span class="p">,</span> <span class="n">img_ids</span><span class="p">,</span> <span class="n">eval_imgs</span><span class="p">):</span>
+
+    <span class="n">img_ids</span><span class="p">,</span> <span class="n">eval_imgs</span> <span class="o">=</span> <span class="n">merge</span><span class="p">(</span><span class="n">img_ids</span><span class="p">,</span> <span class="n">eval_imgs</span><span class="p">)</span>
+
+    <span class="n">img_ids</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">img_ids</span><span class="p">)</span>
+
+    <span class="n">eval_imgs</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">eval_imgs</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+
+    <span class="n">coco_eval</span><span class="o">.</span><span class="n">evalImgs</span> <span class="o">=</span> <span class="n">eval_imgs</span>
+
+    <span class="n">coco_eval</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">imgIds</span> <span class="o">=</span> <span class="n">img_ids</span>
+
+    <span class="n">coco_eval</span><span class="o">.</span><span class="n">_paramsEval</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">coco_eval</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+
+<span class="c1">#################################################################</span>
+
+<span class="c1"># From pycocotools, just removed the prints and fixed</span>
+
+<span class="c1"># a Python3 bug about unicode not defined</span>
+
+<span class="c1">#################################################################</span>
+
+<span class="c1"># Ideally, pycocotools wouldn&#39;t have hard-coded prints</span>
+
+<span class="c1"># so that we could avoid copy-pasting those two functions</span>
+
+<span class="n">def</span> <span class="n">createIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="c1"># create index</span>
+
+    <span class="c1"># print(&#39;creating index...&#39;)</span>
+
+    <span class="n">anns</span><span class="p">,</span> <span class="n">cats</span><span class="p">,</span> <span class="n">imgs</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
+
+    <span class="n">imgToAnns</span><span class="p">,</span> <span class="n">catToImgs</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">list</span><span class="p">),</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">list</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;annotations&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">ann</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;annotations&quot;</span><span class="p">]:</span>
+
+            <span class="n">imgToAnns</span><span class="p">[</span><span class="n">ann</span><span class="p">[</span><span class="s2">&quot;image_id&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ann</span><span class="p">)</span>
+
+            <span class="n">anns</span><span class="p">[</span><span class="n">ann</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">ann</span>
+
+    <span class="k">if</span> <span class="s2">&quot;images&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]:</span>
+
+            <span class="n">imgs</span><span class="p">[</span><span class="n">img</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">img</span>
+
+    <span class="k">if</span> <span class="s2">&quot;categories&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;categories&quot;</span><span class="p">]:</span>
+
+            <span class="n">cats</span><span class="p">[</span><span class="n">cat</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cat</span>
+
+    <span class="k">if</span> <span class="s2">&quot;annotations&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="ow">and</span> <span class="s2">&quot;categories&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">ann</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;annotations&quot;</span><span class="p">]:</span>
+
+            <span class="n">catToImgs</span><span class="p">[</span><span class="n">ann</span><span class="p">[</span><span class="s2">&quot;category_id&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ann</span><span class="p">[</span><span class="s2">&quot;image_id&quot;</span><span class="p">])</span>
+
+    <span class="c1"># print(&#39;index created!&#39;)</span>
+
+    <span class="c1"># create class members</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">anns</span> <span class="o">=</span> <span class="n">anns</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">imgToAnns</span> <span class="o">=</span> <span class="n">imgToAnns</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">catToImgs</span> <span class="o">=</span> <span class="n">catToImgs</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">imgs</span> <span class="o">=</span> <span class="n">imgs</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">cats</span> <span class="o">=</span> <span class="n">cats</span>
+
+<span class="n">maskUtils</span> <span class="o">=</span> <span class="n">mask_util</span>
+
+<span class="n">def</span> <span class="n">loadRes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resFile</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Load result file and return a result api object.</span>
+
+<span class="sd">    :param   resFile (str)     : file name of result file</span>
+
+<span class="sd">    :return: res (obj)         : result api object</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">COCO</span><span class="p">()</span>
+
+    <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]]</span>
+
+    <span class="c1"># print(&#39;Loading and preparing results...&#39;)</span>
+
+    <span class="c1"># tic = time.time()</span>
+
+    <span class="k">if</span> <span class="n">isinstance</span><span class="p">(</span><span class="n">resFile</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">_six</span><span class="o">.</span><span class="n">string_classes</span><span class="p">):</span>
+
+        <span class="n">anns</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">open</span><span class="p">(</span><span class="n">resFile</span><span class="p">))</span>
+
+    <span class="k">elif</span> <span class="n">type</span><span class="p">(</span><span class="n">resFile</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+
+        <span class="n">anns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadNumpyAnnotations</span><span class="p">(</span><span class="n">resFile</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">anns</span> <span class="o">=</span> <span class="n">resFile</span>
+
+    <span class="nb">assert</span> <span class="n">type</span><span class="p">(</span><span class="n">anns</span><span class="p">)</span> <span class="o">==</span> <span class="n">list</span><span class="p">,</span> <span class="s2">&quot;results in not an array of objects&quot;</span>
+
+    <span class="n">annsImgIds</span> <span class="o">=</span> <span class="p">[</span><span class="n">ann</span><span class="p">[</span><span class="s2">&quot;image_id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">ann</span> <span class="ow">in</span> <span class="n">anns</span><span class="p">]</span>
+
+    <span class="nb">assert</span> <span class="n">set</span><span class="p">(</span><span class="n">annsImgIds</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span>
+
+        <span class="n">set</span><span class="p">(</span><span class="n">annsImgIds</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getImgIds</span><span class="p">())</span>
+
+    <span class="p">),</span> <span class="s2">&quot;Results do not correspond to current coco set&quot;</span>
+
+    <span class="k">if</span> <span class="s2">&quot;caption&quot;</span> <span class="ow">in</span> <span class="n">anns</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
+        <span class="n">imgIds</span> <span class="o">=</span> <span class="n">set</span><span class="p">([</span><span class="n">img</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]])</span> <span class="o">&amp;</span> <span class="n">set</span><span class="p">([</span><span class="n">ann</span><span class="p">[</span><span class="s2">&quot;image_id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">ann</span> <span class="ow">in</span> <span class="n">anns</span><span class="p">])</span>
+
+        <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">img</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">imgIds</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">id</span><span class="p">,</span> <span class="n">ann</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">anns</span><span class="p">):</span>
+
+            <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">id</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="s2">&quot;bbox&quot;</span> <span class="ow">in</span> <span class="n">anns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">anns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;bbox&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[]:</span>
+
+        <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;categories&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;categories&quot;</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">id</span><span class="p">,</span> <span class="n">ann</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">anns</span><span class="p">):</span>
+
+            <span class="n">bb</span> <span class="o">=</span> <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">]</span>
+
+            <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="p">[</span><span class="n">bb</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">bb</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bb</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">bb</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+
+            <span class="k">if</span> <span class="s2">&quot;segmentation&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ann</span><span class="p">:</span>
+
+                <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;segmentation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y1</span><span class="p">]]</span>
+
+            <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bb</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">bb</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+            <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">id</span> <span class="o">+</span> <span class="mi">1</span>
+
+            <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;iscrowd&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;annotations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anns</span>
+
+    <span class="n">createIndex</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">res</span>
+
+<span class="n">def</span> <span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Run per image evaluation on given images and store results (a list of dict) in self.evalImgs</span>
+
+<span class="sd">    :return: None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># tic = time.time()</span>
+
+    <span class="c1"># print(&#39;Running per image evaluation...&#39;)</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span>
+
+    <span class="c1"># add backward compatibility if useSegm is specified in params</span>
+
+    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">useSegm</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">None</span><span class="p">:</span>
+
+        <span class="n">p</span><span class="o">.</span><span class="n">iouType</span> <span class="o">=</span> <span class="s2">&quot;segm&quot;</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">useSegm</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;bbox&quot;</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;useSegm (deprecated) is not None. Running {} evaluation&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">iouType</span><span class="p">))</span>
+
+    <span class="c1"># print(&#39;Evaluate annotation type *{}*&#39;.format(p.iouType))</span>
+
+    <span class="n">p</span><span class="o">.</span><span class="n">imgIds</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">imgIds</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">useCats</span><span class="p">:</span>
+
+        <span class="n">p</span><span class="o">.</span><span class="n">catIds</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">catIds</span><span class="p">))</span>
+
+    <span class="n">p</span><span class="o">.</span><span class="n">maxDets</span> <span class="o">=</span> <span class="n">sorted</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">maxDets</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">p</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_prepare</span><span class="p">()</span>
+
+    <span class="c1"># loop through images, area range, max detection number</span>
+
+    <span class="n">catIds</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">catIds</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">useCats</span> <span class="k">else</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">iouType</span> <span class="o">==</span> <span class="s2">&quot;segm&quot;</span> <span class="ow">or</span> <span class="n">p</span><span class="o">.</span><span class="n">iouType</span> <span class="o">==</span> <span class="s2">&quot;bbox&quot;</span><span class="p">:</span>
+
+        <span class="n">computeIoU</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">computeIoU</span>
+
+    <span class="k">elif</span> <span class="n">p</span><span class="o">.</span><span class="n">iouType</span> <span class="o">==</span> <span class="s2">&quot;keypoints&quot;</span><span class="p">:</span>
+
+        <span class="n">computeIoU</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">computeOks</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">ious</span> <span class="o">=</span> <span class="p">{(</span><span class="n">imgId</span><span class="p">,</span> <span class="n">catId</span><span class="p">):</span> <span class="n">computeIoU</span><span class="p">(</span><span class="n">imgId</span><span class="p">,</span> <span class="n">catId</span><span class="p">)</span> <span class="k">for</span> <span class="n">imgId</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">imgIds</span> <span class="k">for</span> <span class="n">catId</span> <span class="ow">in</span> <span class="n">catIds</span><span class="p">}</span>
+
+    <span class="n">evaluateImg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluateImg</span>
+
+    <span class="n">maxDet</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">maxDets</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">evalImgs</span> <span class="o">=</span> <span class="p">[</span>
+
+        <span class="n">evaluateImg</span><span class="p">(</span><span class="n">imgId</span><span class="p">,</span> <span class="n">catId</span><span class="p">,</span> <span class="n">areaRng</span><span class="p">,</span> <span class="n">maxDet</span><span class="p">)</span> <span class="k">for</span> <span class="n">catId</span> <span class="ow">in</span> <span class="n">catIds</span> <span class="k">for</span> <span class="n">areaRng</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">areaRng</span> <span class="k">for</span> <span class="n">imgId</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">imgIds</span>
+
+    <span class="p">]</span>
+
+    <span class="c1"># this is NOT in the pycocotools code, but could be done outside</span>
+
+    <span class="n">evalImgs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">evalImgs</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">catIds</span><span class="p">),</span> <span class="n">len</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">areaRng</span><span class="p">),</span> <span class="n">len</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">imgIds</span><span class="p">))</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_paramsEval</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="c1"># toc = time.time()</span>
+
+    <span class="c1"># print(&#39;DONE (t={:0.2f}s).&#39;.format(toc-tic))</span>
+
+    <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">imgIds</span><span class="p">,</span> <span class="n">evalImgs</span>
+
+<span class="c1">#################################################################</span>
+
+<span class="c1"># end of straight copy from pycocotools, just removing the prints</span>
+
+<span class="c1">#################################################################</span>
+</code></pre></div>
+
+</details>
+<h2 id="variables">Variables</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">maskUtils</span>
+</code></pre></div>
+
+<h2 id="functions">Functions</h2>
+<h3 id="all_gather">all_gather</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">all_gather</span><span class="p">(</span>
+    <span class="n">data</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Run all_gather on arbitrary picklable data (not necessarily tensors)</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td>None</td>
+<td>any picklable object</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>list[data]</td>
+<td>list of data gathered from each rank</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">all_gather</span><span class="p">(</span><span class="k">data</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Run all_gather on arbitrary picklable data (not necessarily tensors)</span>
+
+<span class="ss">    Args:</span>
+
+<span class="ss">        data: any picklable object</span>
+
+<span class="ss">    Returns:</span>
+
+<span class="ss">        list[data]: list of data gathered from each rank</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">world_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_world_size</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">world_size</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">[</span><span class="n">data</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">serialized</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">Tensor</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pickle</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="k">data</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">storage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">torch</span><span class="p">.</span><span class="n">ByteStorage</span><span class="p">.</span><span class="n">from_buffer</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">tensor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">torch</span><span class="p">.</span><span class="n">ByteTensor</span><span class="p">(</span><span class="n">storage</span><span class="p">).</span><span class="k">to</span><span class="p">(</span><span class="ss">&quot;cuda&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">obtain</span><span class="w"> </span><span class="n">Tensor</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="k">each</span><span class="w"> </span><span class="nf">rank</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">local_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">[</span><span class="n">tensor.numel()</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">device</span><span class="o">=</span><span class="ss">&quot;cuda&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">size_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">torch.tensor([0</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">device</span><span class="o">=</span><span class="ss">&quot;cuda&quot;</span><span class="p">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">world_size</span><span class="p">)</span><span class="err">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">dist</span><span class="p">.</span><span class="n">all_gather</span><span class="p">(</span><span class="n">size_list</span><span class="p">,</span><span class="w"> </span><span class="n">local_size</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">size_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">int(size.item()) for size in size_list</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">max_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">size_list</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">receiving</span><span class="w"> </span><span class="n">Tensor</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">ranks</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="k">pad</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">tensor</span><span class="w"> </span><span class="n">because</span><span class="w"> </span><span class="n">torch</span><span class="w"> </span><span class="n">all_gather</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">support</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">gathering</span><span class="w"> </span><span class="n">tensors</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">different</span><span class="w"> </span><span class="n">shapes</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">tensor_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">size_list</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">tensor_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">empty</span><span class="p">((</span><span class="n">max_size</span><span class="p">,),</span><span class="w"> </span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">uint8</span><span class="p">,</span><span class="w"> </span><span class="n">device</span><span class="o">=</span><span class="ss">&quot;cuda&quot;</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">local_size</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nl">max_size</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">padding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">torch</span><span class="p">.</span><span class="n">empty</span><span class="p">(</span><span class="k">size</span><span class="o">=</span><span class="p">(</span><span class="n">max_size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">local_size</span><span class="p">,),</span><span class="w"> </span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">uint8</span><span class="p">,</span><span class="w"> </span><span class="n">device</span><span class="o">=</span><span class="ss">&quot;cuda&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">tensor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">torch</span><span class="p">.</span><span class="n">cat</span><span class="p">((</span><span class="n">tensor</span><span class="p">,</span><span class="w"> </span><span class="n">padding</span><span class="p">),</span><span class="w"> </span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">dist</span><span class="p">.</span><span class="n">all_gather</span><span class="p">(</span><span class="n">tensor_list</span><span class="p">,</span><span class="w"> </span><span class="n">tensor</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">data_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="k">size</span><span class="p">,</span><span class="w"> </span><span class="n">tensor</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">zip</span><span class="p">(</span><span class="n">size_list</span><span class="p">,</span><span class="w"> </span><span class="n">tensor_list</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor</span><span class="p">.</span><span class="n">cpu</span><span class="p">().</span><span class="n">numpy</span><span class="p">().</span><span class="n">tobytes</span><span class="p">()</span><span class="o">[</span><span class="n">:size</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">data_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">pickle</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">buffer</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">data_list</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="convert_to_xywh">convert_to_xywh</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">convert_to_xywh</span><span class="p">(</span>
+    <span class="n">boxes</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">def</span> <span class="nv">convert_to_xywh</span><span class="ss">(</span><span class="nv">boxes</span><span class="ss">)</span>:
+
+    <span class="nv">xmin</span>, <span class="nv">ymin</span>, <span class="nv">xmax</span>, <span class="nv">ymax</span> <span class="o">=</span> <span class="nv">boxes</span>.<span class="nv">unbind</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span>
+
+    <span class="k">return</span> <span class="nv">torch</span>.<span class="nv">stack</span><span class="ss">((</span><span class="nv">xmin</span>, <span class="nv">ymin</span>, <span class="nv">xmax</span> <span class="o">-</span> <span class="nv">xmin</span>, <span class="nv">ymax</span> <span class="o">-</span> <span class="nv">ymin</span><span class="ss">)</span>, <span class="nv">dim</span><span class="o">=</span><span class="mi">1</span><span class="ss">)</span>
+</code></pre></div>
+
+</details>
+<h3 id="createindex">createIndex</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">createIndex</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">def</span> <span class="nv">createIndex</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>:
+
+    # <span class="nv">create</span> <span class="nv">index</span>
+
+    # <span class="nv">print</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">creating index...</span><span class="s1">&#39;</span><span class="ss">)</span>
+
+    <span class="nv">anns</span>, <span class="nv">cats</span>, <span class="nv">imgs</span> <span class="o">=</span> {}, {}, {}
+
+    <span class="nv">imgToAnns</span>, <span class="nv">catToImgs</span> <span class="o">=</span> <span class="nv">defaultdict</span><span class="ss">(</span><span class="nv">list</span><span class="ss">)</span>, <span class="nv">defaultdict</span><span class="ss">(</span><span class="nv">list</span><span class="ss">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;</span><span class="s">annotations</span><span class="s2">&quot;</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">dataset</span>:
+
+        <span class="k">for</span> <span class="nv">ann</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">dataset</span>[<span class="s2">&quot;</span><span class="s">annotations</span><span class="s2">&quot;</span>]:
+
+            <span class="nv">imgToAnns</span>[<span class="nv">ann</span>[<span class="s2">&quot;</span><span class="s">image_id</span><span class="s2">&quot;</span>]].<span class="nv">append</span><span class="ss">(</span><span class="nv">ann</span><span class="ss">)</span>
+
+            <span class="nv">anns</span>[<span class="nv">ann</span>[<span class="s2">&quot;</span><span class="s">id</span><span class="s2">&quot;</span>]] <span class="o">=</span> <span class="nv">ann</span>
+
+    <span class="k">if</span> <span class="s2">&quot;</span><span class="s">images</span><span class="s2">&quot;</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">dataset</span>:
+
+        <span class="k">for</span> <span class="nv">img</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">dataset</span>[<span class="s2">&quot;</span><span class="s">images</span><span class="s2">&quot;</span>]:
+
+            <span class="nv">imgs</span>[<span class="nv">img</span>[<span class="s2">&quot;</span><span class="s">id</span><span class="s2">&quot;</span>]] <span class="o">=</span> <span class="nv">img</span>
+
+    <span class="k">if</span> <span class="s2">&quot;</span><span class="s">categories</span><span class="s2">&quot;</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">dataset</span>:
+
+        <span class="k">for</span> <span class="nv">cat</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">dataset</span>[<span class="s2">&quot;</span><span class="s">categories</span><span class="s2">&quot;</span>]:
+
+            <span class="nv">cats</span>[<span class="nv">cat</span>[<span class="s2">&quot;</span><span class="s">id</span><span class="s2">&quot;</span>]] <span class="o">=</span> <span class="nv">cat</span>
+
+    <span class="k">if</span> <span class="s2">&quot;</span><span class="s">annotations</span><span class="s2">&quot;</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">dataset</span> <span class="nv">and</span> <span class="s2">&quot;</span><span class="s">categories</span><span class="s2">&quot;</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">dataset</span>:
+
+        <span class="k">for</span> <span class="nv">ann</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">dataset</span>[<span class="s2">&quot;</span><span class="s">annotations</span><span class="s2">&quot;</span>]:
+
+            <span class="nv">catToImgs</span>[<span class="nv">ann</span>[<span class="s2">&quot;</span><span class="s">category_id</span><span class="s2">&quot;</span>]].<span class="nv">append</span><span class="ss">(</span><span class="nv">ann</span>[<span class="s2">&quot;</span><span class="s">image_id</span><span class="s2">&quot;</span>]<span class="ss">)</span>
+
+    # <span class="nv">print</span><span class="ss">(</span><span class="s1">&#39;</span><span class="s">index created!</span><span class="s1">&#39;</span><span class="ss">)</span>
+
+    # <span class="nv">create</span> <span class="nv">class</span> <span class="nv">members</span>
+
+    <span class="nv">self</span>.<span class="nv">anns</span> <span class="o">=</span> <span class="nv">anns</span>
+
+    <span class="nv">self</span>.<span class="nv">imgToAnns</span> <span class="o">=</span> <span class="nv">imgToAnns</span>
+
+    <span class="nv">self</span>.<span class="nv">catToImgs</span> <span class="o">=</span> <span class="nv">catToImgs</span>
+
+    <span class="nv">self</span>.<span class="nv">imgs</span> <span class="o">=</span> <span class="nv">imgs</span>
+
+    <span class="nv">self</span>.<span class="nv">cats</span> <span class="o">=</span> <span class="nv">cats</span>
+</code></pre></div>
+
+</details>
+<h3 id="create_common_coco_eval">create_common_coco_eval</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_common_coco_eval</span><span class="p">(</span>
+    <span class="n">coco_eval</span><span class="p">,</span>
+    <span class="n">img_ids</span><span class="p">,</span>
+    <span class="n">eval_imgs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>def create_common_coco_eval(coco_eval, img_ids, eval_imgs):
+
+    img_ids, eval_imgs = merge(img_ids, eval_imgs)
+
+    img_ids = list(img_ids)
+
+    eval_imgs = list(eval_imgs.flatten())
+
+    coco_eval.evalImgs = eval_imgs
+
+    coco_eval.params.imgIds = img_ids
+
+    coco_eval._paramsEval = copy.deepcopy(coco_eval.params)
+</code></pre></div>
+
+</details>
+<h3 id="evaluate">evaluate</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Run per image evaluation on given images and store results (a list of dict) in self.evalImgs</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">evaluate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Run per image evaluation on given images and store results (a list of dict) in self.evalImgs</span>
+
+<span class="sd">    :return: None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># tic = time.time()</span>
+
+    <span class="c1"># print(&#39;Running per image evaluation...&#39;)</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span>
+
+    <span class="c1"># add backward compatibility if useSegm is specified in params</span>
+
+    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">useSegm</span> <span class="k">is</span> <span class="ow">not</span> <span class="n">None</span><span class="p">:</span>
+
+        <span class="n">p</span><span class="o">.</span><span class="n">iouType</span> <span class="o">=</span> <span class="s2">&quot;segm&quot;</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">useSegm</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&quot;bbox&quot;</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;useSegm (deprecated) is not None. Running {} evaluation&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">iouType</span><span class="p">))</span>
+
+    <span class="c1"># print(&#39;Evaluate annotation type *{}*&#39;.format(p.iouType))</span>
+
+    <span class="n">p</span><span class="o">.</span><span class="n">imgIds</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">imgIds</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">useCats</span><span class="p">:</span>
+
+        <span class="n">p</span><span class="o">.</span><span class="n">catIds</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">catIds</span><span class="p">))</span>
+
+    <span class="n">p</span><span class="o">.</span><span class="n">maxDets</span> <span class="o">=</span> <span class="n">sorted</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">maxDets</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">params</span> <span class="o">=</span> <span class="n">p</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_prepare</span><span class="p">()</span>
+
+    <span class="c1"># loop through images, area range, max detection number</span>
+
+    <span class="n">catIds</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">catIds</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">useCats</span> <span class="k">else</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">iouType</span> <span class="o">==</span> <span class="s2">&quot;segm&quot;</span> <span class="ow">or</span> <span class="n">p</span><span class="o">.</span><span class="n">iouType</span> <span class="o">==</span> <span class="s2">&quot;bbox&quot;</span><span class="p">:</span>
+
+        <span class="n">computeIoU</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">computeIoU</span>
+
+    <span class="k">elif</span> <span class="n">p</span><span class="o">.</span><span class="n">iouType</span> <span class="o">==</span> <span class="s2">&quot;keypoints&quot;</span><span class="p">:</span>
+
+        <span class="n">computeIoU</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">computeOks</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">ious</span> <span class="o">=</span> <span class="p">{(</span><span class="n">imgId</span><span class="p">,</span> <span class="n">catId</span><span class="p">):</span> <span class="n">computeIoU</span><span class="p">(</span><span class="n">imgId</span><span class="p">,</span> <span class="n">catId</span><span class="p">)</span> <span class="k">for</span> <span class="n">imgId</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">imgIds</span> <span class="k">for</span> <span class="n">catId</span> <span class="ow">in</span> <span class="n">catIds</span><span class="p">}</span>
+
+    <span class="n">evaluateImg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluateImg</span>
+
+    <span class="n">maxDet</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">maxDets</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">evalImgs</span> <span class="o">=</span> <span class="p">[</span>
+
+        <span class="n">evaluateImg</span><span class="p">(</span><span class="n">imgId</span><span class="p">,</span> <span class="n">catId</span><span class="p">,</span> <span class="n">areaRng</span><span class="p">,</span> <span class="n">maxDet</span><span class="p">)</span> <span class="k">for</span> <span class="n">catId</span> <span class="ow">in</span> <span class="n">catIds</span> <span class="k">for</span> <span class="n">areaRng</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">areaRng</span> <span class="k">for</span> <span class="n">imgId</span> <span class="ow">in</span> <span class="n">p</span><span class="o">.</span><span class="n">imgIds</span>
+
+    <span class="p">]</span>
+
+    <span class="c1"># this is NOT in the pycocotools code, but could be done outside</span>
+
+    <span class="n">evalImgs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">evalImgs</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">catIds</span><span class="p">),</span> <span class="n">len</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">areaRng</span><span class="p">),</span> <span class="n">len</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">imgIds</span><span class="p">))</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">_paramsEval</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="c1"># toc = time.time()</span>
+
+    <span class="c1"># print(&#39;DONE (t={:0.2f}s).&#39;.format(toc-tic))</span>
+
+    <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="n">imgIds</span><span class="p">,</span> <span class="n">evalImgs</span>
+</code></pre></div>
+
+</details>
+<h3 id="get_world_size">get_world_size</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_world_size</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">def</span> <span class="nv">get_world_size</span><span class="ss">()</span>:
+
+    <span class="k">if</span> <span class="nv">not</span> <span class="nv">is_dist_avail_and_initialized</span><span class="ss">()</span>:
+
+        <span class="k">return</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="nv">dist</span>.<span class="nv">get_world_size</span><span class="ss">()</span>
+</code></pre></div>
+
+</details>
+<h3 id="is_dist_avail_and_initialized">is_dist_avail_and_initialized</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">is_dist_avail_and_initialized</span><span class="p">(</span>
+
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">def</span> <span class="nv">is_dist_avail_and_initialized</span><span class="ss">()</span>:
+
+    <span class="k">if</span> <span class="nv">not</span> <span class="nv">dist</span>.<span class="nv">is_available</span><span class="ss">()</span>:
+
+        <span class="k">return</span> <span class="nv">False</span>
+
+    <span class="k">if</span> <span class="nv">not</span> <span class="nv">dist</span>.<span class="nv">is_initialized</span><span class="ss">()</span>:
+
+        <span class="k">return</span> <span class="nv">False</span>
+
+    <span class="k">return</span> <span class="nv">True</span>
+</code></pre></div>
+
+</details>
+<h3 id="loadres">loadRes</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">loadRes</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">resFile</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<p>Load result file and return a result api object.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(str)</td>
+<td>resFile</td>
+<td>file name of result file</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>res (obj)         : result api object</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">loadRes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resFile</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Load result file and return a result api object.</span>
+
+<span class="sd">    :param   resFile (str)     : file name of result file</span>
+
+<span class="sd">    :return: res (obj)         : result api object</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">COCO</span><span class="p">()</span>
+
+    <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]]</span>
+
+    <span class="c1"># print(&#39;Loading and preparing results...&#39;)</span>
+
+    <span class="c1"># tic = time.time()</span>
+
+    <span class="k">if</span> <span class="n">isinstance</span><span class="p">(</span><span class="n">resFile</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">_six</span><span class="o">.</span><span class="n">string_classes</span><span class="p">):</span>
+
+        <span class="n">anns</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">open</span><span class="p">(</span><span class="n">resFile</span><span class="p">))</span>
+
+    <span class="k">elif</span> <span class="n">type</span><span class="p">(</span><span class="n">resFile</span><span class="p">)</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+
+        <span class="n">anns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadNumpyAnnotations</span><span class="p">(</span><span class="n">resFile</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">anns</span> <span class="o">=</span> <span class="n">resFile</span>
+
+    <span class="nb">assert</span> <span class="n">type</span><span class="p">(</span><span class="n">anns</span><span class="p">)</span> <span class="o">==</span> <span class="n">list</span><span class="p">,</span> <span class="s2">&quot;results in not an array of objects&quot;</span>
+
+    <span class="n">annsImgIds</span> <span class="o">=</span> <span class="p">[</span><span class="n">ann</span><span class="p">[</span><span class="s2">&quot;image_id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">ann</span> <span class="ow">in</span> <span class="n">anns</span><span class="p">]</span>
+
+    <span class="nb">assert</span> <span class="n">set</span><span class="p">(</span><span class="n">annsImgIds</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span>
+
+        <span class="n">set</span><span class="p">(</span><span class="n">annsImgIds</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getImgIds</span><span class="p">())</span>
+
+    <span class="p">),</span> <span class="s2">&quot;Results do not correspond to current coco set&quot;</span>
+
+    <span class="k">if</span> <span class="s2">&quot;caption&quot;</span> <span class="ow">in</span> <span class="n">anns</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+
+        <span class="n">imgIds</span> <span class="o">=</span> <span class="n">set</span><span class="p">([</span><span class="n">img</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]])</span> <span class="o">&amp;</span> <span class="n">set</span><span class="p">([</span><span class="n">ann</span><span class="p">[</span><span class="s2">&quot;image_id&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">ann</span> <span class="ow">in</span> <span class="n">anns</span><span class="p">])</span>
+
+        <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">img</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;images&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">img</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">imgIds</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">id</span><span class="p">,</span> <span class="n">ann</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">anns</span><span class="p">):</span>
+
+            <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">id</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="s2">&quot;bbox&quot;</span> <span class="ow">in</span> <span class="n">anns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">anns</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;bbox&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[]:</span>
+
+        <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;categories&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;categories&quot;</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">id</span><span class="p">,</span> <span class="n">ann</span> <span class="ow">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">anns</span><span class="p">):</span>
+
+            <span class="n">bb</span> <span class="o">=</span> <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">]</span>
+
+            <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="p">[</span><span class="n">bb</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">bb</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bb</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bb</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">bb</span><span class="p">[</span><span class="mi">3</span><span class="p">]]</span>
+
+            <span class="k">if</span> <span class="s2">&quot;segmentation&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ann</span><span class="p">:</span>
+
+                <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;segmentation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y1</span><span class="p">]]</span>
+
+            <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bb</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">bb</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+            <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">id</span> <span class="o">+</span> <span class="mi">1</span>
+
+            <span class="n">ann</span><span class="p">[</span><span class="s2">&quot;iscrowd&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">res</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;annotations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anns</span>
+
+    <span class="n">createIndex</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+
+</details>
+<h3 id="merge">merge</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">merge</span><span class="p">(</span>
+    <span class="n">img_ids</span><span class="p">,</span>
+    <span class="n">eval_imgs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="nv">def</span> <span class="nv">merge</span><span class="ss">(</span><span class="nv">img_ids</span>, <span class="nv">eval_imgs</span><span class="ss">)</span>:
+
+    <span class="nv">all_img_ids</span> <span class="o">=</span> <span class="nv">all_gather</span><span class="ss">(</span><span class="nv">img_ids</span><span class="ss">)</span>
+
+    <span class="nv">all_eval_imgs</span> <span class="o">=</span> <span class="nv">all_gather</span><span class="ss">(</span><span class="nv">eval_imgs</span><span class="ss">)</span>
+
+    <span class="nv">merged_img_ids</span> <span class="o">=</span> []
+
+    <span class="k">for</span> <span class="nv">p</span> <span class="nv">in</span> <span class="nv">all_img_ids</span>:
+
+        <span class="nv">merged_img_ids</span>.<span class="nv">extend</span><span class="ss">(</span><span class="nv">p</span><span class="ss">)</span>
+
+    <span class="nv">merged_eval_imgs</span> <span class="o">=</span> []
+
+    <span class="k">for</span> <span class="nv">p</span> <span class="nv">in</span> <span class="nv">all_eval_imgs</span>:
+
+        <span class="nv">merged_eval_imgs</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">p</span><span class="ss">)</span>
+
+    <span class="nv">merged_img_ids</span> <span class="o">=</span> <span class="nv">np</span>.<span class="nv">array</span><span class="ss">(</span><span class="nv">merged_img_ids</span><span class="ss">)</span>
+
+    <span class="nv">merged_eval_imgs</span> <span class="o">=</span> <span class="nv">np</span>.<span class="nv">concatenate</span><span class="ss">(</span><span class="nv">merged_eval_imgs</span>, <span class="mi">2</span><span class="ss">)</span>
+
+    # <span class="nv">keep</span> <span class="nv">only</span> <span class="nv">unique</span> <span class="ss">(</span><span class="nv">and</span> <span class="nv">in</span> <span class="nv">sorted</span> <span class="nv">order</span><span class="ss">)</span> <span class="nv">images</span>
+
+    <span class="nv">merged_img_ids</span>, <span class="nv">idx</span> <span class="o">=</span> <span class="nv">np</span>.<span class="nv">unique</span><span class="ss">(</span><span class="nv">merged_img_ids</span>, <span class="nv">return_index</span><span class="o">=</span><span class="nv">True</span><span class="ss">)</span>
+
+    <span class="nv">merged_eval_imgs</span> <span class="o">=</span> <span class="nv">merged_eval_imgs</span>[..., <span class="nv">idx</span>]
+
+    <span class="k">return</span> <span class="nv">merged_img_ids</span>, <span class="nv">merged_eval_imgs</span>
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="cocoevaluator">CocoEvaluator</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">CocoEvaluator</span><span class="p">(</span>
+    <span class="n">coco_gt</span><span class="p">,</span>
+    <span class="n">iou_types</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<h4 id="methods">Methods</h4>
+<h4 id="accumulate">accumulate</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">accumulate</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="nv">def</span> <span class="nv">accumulate</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>:
+
+        <span class="k">for</span> <span class="nv">coco_eval</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">coco_eval</span>.<span class="nv">values</span><span class="ss">()</span>:
+
+            <span class="nv">coco_eval</span>.<span class="nv">accumulate</span><span class="ss">()</span>
+</code></pre></div>
+
+</details>
+<h4 id="prepare">prepare</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">predictions</span><span class="p">,</span>
+    <span class="n">iou_type</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="nv">def</span> <span class="nv">prepare</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">predictions</span>, <span class="nv">iou_type</span><span class="ss">)</span>:
+
+        <span class="k">return</span> <span class="nv">self</span>.<span class="nv">prepare_for_coco_detection</span><span class="ss">(</span><span class="nv">predictions</span><span class="ss">)</span>
+</code></pre></div>
+
+</details>
+<h4 id="prepare_for_coco_detection">prepare_for_coco_detection</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">prepare_for_coco_detection</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">predictions</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">prepare_for_coco_detection</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">predictions</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">coco_results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">original_id</span><span class="p">,</span><span class="w"> </span><span class="n">prediction</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">predictions</span><span class="p">.</span><span class="n">items</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">prediction</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">continue</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="o">[</span><span class="n">&quot;boxes&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">boxes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convert_to_xywh</span><span class="p">(</span><span class="n">boxes</span><span class="p">).</span><span class="n">tolist</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">scores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="o">[</span><span class="n">&quot;scores&quot;</span><span class="o">]</span><span class="p">.</span><span class="n">tolist</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="o">[</span><span class="n">&quot;labels&quot;</span><span class="o">]</span><span class="p">.</span><span class="n">tolist</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">coco_results</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                </span><span class="o">[</span><span class="n"></span>
+
+<span class="n">                    {</span>
+
+<span class="n">                        &quot;image_id&quot;: original_id,</span>
+
+<span class="n">                        &quot;category_id&quot;: labels[k</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                        </span><span class="ss">&quot;bbox&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">box</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                        </span><span class="ss">&quot;score&quot;</span><span class="err">:</span><span class="w"> </span><span class="n">scores</span><span class="o">[</span><span class="n">k</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                    </span><span class="err">}</span><span class="w"></span>
+
+<span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">box</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">enumerate</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="err">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">coco_results</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h4 id="summarize">summarize</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code>    <span class="nv">def</span> <span class="nv">summarize</span><span class="ss">(</span><span class="nv">self</span><span class="ss">)</span>:
+
+        <span class="k">for</span> <span class="nv">iou_type</span>, <span class="nv">coco_eval</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">coco_eval</span>.<span class="nv">items</span><span class="ss">()</span>:
+
+            <span class="nv">print</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">IoU metric: {}</span><span class="s2">&quot;</span>.<span class="nv">format</span><span class="ss">(</span><span class="nv">iou_type</span><span class="ss">))</span>
+
+            <span class="nv">coco_eval</span>.<span class="nv">summarize</span><span class="ss">()</span>
+</code></pre></div>
+
+</details>
+<h4 id="synchronize_between_processes">synchronize_between_processes</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">synchronize_between_processes</span><span class="p">(</span>
+    <span class="bp">self</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">synchronize_between_processes</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">iou_type</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">iou_types</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">eval_imgs</span><span class="o">[</span><span class="n">iou_type</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">eval_imgs</span><span class="o">[</span><span class="n">iou_type</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">create_common_coco_eval</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">coco_eval</span><span class="o">[</span><span class="n">iou_type</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">img_ids</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">eval_imgs</span><span class="o">[</span><span class="n">iou_type</span><span class="o">]</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h4 id="update">update</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">predictions</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example"><summary>View Source</summary><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="k">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">predictions</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">img_ids</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="k">unique</span><span class="p">(</span><span class="n">list</span><span class="p">(</span><span class="n">predictions</span><span class="p">.</span><span class="n">keys</span><span class="p">())))</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">self</span><span class="p">.</span><span class="n">img_ids</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">img_ids</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">iou_type</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">iou_types</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="k">prepare</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span><span class="w"> </span><span class="n">iou_type</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">coco_dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loadRes</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">coco_gt</span><span class="p">,</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">COCO</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">coco_eval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">coco_eval</span><span class="o">[</span><span class="n">iou_type</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">coco_eval</span><span class="p">.</span><span class="n">cocoDt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coco_dt</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">coco_eval</span><span class="p">.</span><span class="n">params</span><span class="p">.</span><span class="n">imgIds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="n">img_ids</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">img_ids</span><span class="p">,</span><span class="w"> </span><span class="n">eval_imgs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evaluate</span><span class="p">(</span><span class="n">coco_eval</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">eval_imgs</span><span class="o">[</span><span class="n">iou_type</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">np</span><span class="p">.</span><span class="n">ndarray</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">self</span><span class="p">.</span><span class="n">eval_imgs</span><span class="o">[</span><span class="n">iou_type</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">eval_imgs</span><span class="o">[</span><span class="n">iou_type</span><span class="o">]</span><span class="p">.</span><span class="n">tolist</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">eval_imgs</span><span class="o">[</span><span class="n">iou_type</span><span class="o">]</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">eval_imgs</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../models/" title="Index" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Index
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../coco_utils/" title="Coco Utils" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Coco Utils
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.4fa0e4ee.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.1d3bfcf1.min.js"></script>
+      
+    
+  </body>
+</html>
