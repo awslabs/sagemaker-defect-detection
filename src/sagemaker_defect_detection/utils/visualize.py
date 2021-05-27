@@ -150,4 +150,5 @@ def visualize(
             img = visualize_bbox(img, bbox, class_name, color=colors[j])
 
         plt.imshow(img)
+        plt.show()
     return
