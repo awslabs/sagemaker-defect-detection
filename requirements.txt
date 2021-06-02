@@ -56,7 +56,7 @@ tifffile==2020.9.3        # via scikit-image
 torch==1.6.0              # via -r requirements.in, pytorch-lightning, torchvision
 torchvision==0.7.0        # via -r requirements.in
 tqdm==4.51.0              # via pytorch-lightning
-urllib3==1.25.11          # via requests
+urllib3>=1.26.5           # via requests
 werkzeug==1.0.1           # via tensorboard
 wheel==0.35.1             # via tensorboard
 zipp==3.4.0               # via importlib-metadata
