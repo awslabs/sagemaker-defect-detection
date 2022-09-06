@@ -91,7 +91,7 @@ pillow
     #   matplotlib
     #   scikit-image
     #   torchvision
-protobuf==3.19.4
+protobuf
     # via tensorboard
 pyasn1==0.4.8
     # via
