@@ -84,14 +84,14 @@ packaging==21.3
     #   scikit-image
 patool==1.12
     # via -r requirements.in
-pillow==9.1.1
+pillow
     # via
     #   imageio
     #   imgaug
     #   matplotlib
     #   scikit-image
     #   torchvision
-protobuf==3.19.4
+protobuf
     # via tensorboard
 pyasn1==0.4.8
     # via
@@ -107,7 +107,7 @@ pyparsing==3.0.9
     #   packaging
 python-dateutil==2.8.2
     # via matplotlib
-pytorch-lightning==0.8.5
+pytorch-lightning
     # via -r requirements.in
 pyunpack==0.2.1
     # via -r requirements.in
