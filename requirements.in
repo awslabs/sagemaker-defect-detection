@@ -1,7 +1,7 @@
-patool==1.12
-pyunpack==0.2.1
-torch==1.6.0
-torchvision==0.7.0
-albumentations==0.4.6
-pytorch_lightning==0.8.5
-pycocotools==2.0.1
+patool
+pyunpack
+torch
+torchvision
+albumentations
+pytorch_lightning
+pycocotools

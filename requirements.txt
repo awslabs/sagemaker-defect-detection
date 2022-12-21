@@ -4,59 +4,59 @@
 #
 #    pip-compile requirements.in
 #
-absl-py==1.1.0
+absl-py
     # via tensorboard
-albumentations==0.4.6
+albumentations
     # via -r requirements.in
-cachetools==5.2.0
+cachetools
     # via google-auth
-certifi==2022.6.15
+certifi
     # via requests
-charset-normalizer==2.0.12
+charset-normalizer
     # via requests
-cycler==0.11.0
+cycler
     # via matplotlib
-cython==0.29.30
+cython
     # via pycocotools
-easyprocess==1.1
+easyprocess
     # via pyunpack
-entrypoint2==1.1
+entrypoint2
     # via pyunpack
-fonttools==4.33.3
+fonttools
     # via matplotlib
-future==0.18.2
+future
     # via
     #   pytorch-lightning
     #   torch
-google-auth==2.8.0
+google-auth
     # via
     #   google-auth-oauthlib
     #   tensorboard
-google-auth-oauthlib==0.4.6
+google-auth-oauthlib
     # via tensorboard
-grpcio==1.46.3
+grpcio
     # via tensorboard
-idna==3.3
+idna
     # via requests
-imageio==2.19.3
+imageio
     # via
     #   imgaug
     #   scikit-image
-imgaug==0.4.0
+imgaug
     # via albumentations
-importlib-metadata==4.11.4
+importlib-metadata
     # via markdown
-kiwisolver==1.4.3
+kiwisolver
     # via matplotlib
-markdown==3.3.7
+markdown
     # via tensorboard
-matplotlib==3.5.2
+matplotlib
     # via
     #   imgaug
     #   pycocotools
-networkx==2.8.4
+networkx
     # via scikit-image
-numpy==1.22.4
+numpy
     # via
     #   albumentations
     #   imageio
@@ -72,17 +72,17 @@ numpy==1.22.4
     #   tifffile
     #   torch
     #   torchvision
-oauthlib==3.2.0
+oauthlib
     # via requests-oauthlib
-opencv-python==4.6.0.66
+opencv-python
     # via imgaug
-opencv-python-headless==4.6.0.66
+opencv-python-headless
     # via albumentations
-packaging==21.3
+packaging
     # via
     #   matplotlib
     #   scikit-image
-patool==1.12
+patool
     # via -r requirements.in
 pillow
     # via
@@ -93,75 +93,75 @@ pillow
     #   torchvision
 protobuf
     # via tensorboard
-pyasn1==0.4.8
+pyasn1
     # via
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.2.8
+pyasn1-modules
     # via google-auth
-pycocotools==2.0.1
+pycocotools
     # via -r requirements.in
-pyparsing==3.0.9
+pyparsing
     # via
     #   matplotlib
     #   packaging
-python-dateutil==2.8.2
+python-dateutil
     # via matplotlib
 pytorch-lightning
     # via -r requirements.in
-pyunpack==0.2.1
+pyunpack
     # via -r requirements.in
-pywavelets==1.3.0
+pywavelets
     # via scikit-image
-pyyaml==6.0
+pyyaml
     # via
     #   albumentations
     #   pytorch-lightning
-requests==2.28.0
+requests
     # via
     #   requests-oauthlib
     #   tensorboard
-requests-oauthlib==1.3.1
+requests-oauthlib
     # via google-auth-oauthlib
-rsa==4.8
+rsa
     # via google-auth
-scikit-image==0.19.3
+scikit-image
     # via imgaug
-scipy==1.8.1
+scipy
     # via
     #   albumentations
     #   imgaug
     #   scikit-image
-shapely==1.8.2
+shapely
     # via imgaug
-six==1.16.0
+six
     # via
     #   google-auth
     #   grpcio
     #   imgaug
     #   python-dateutil
-tensorboard==2.9.1
+tensorboard
     # via pytorch-lightning
-tensorboard-data-server==0.6.1
+tensorboard-data-server
     # via tensorboard
-tensorboard-plugin-wit==1.8.1
+tensorboard-plugin-wit
     # via tensorboard
-tifffile==2022.5.4
+tifffile
     # via scikit-image
-torch==1.6.0
+torch
     # via
     #   -r requirements.in
     #   pytorch-lightning
     #   torchvision
-torchvision==0.7.0
+torchvision
     # via -r requirements.in
-tqdm==4.64.0
+tqdm
     # via pytorch-lightning
-urllib3==1.26.9
+urllib3
     # via requests
-werkzeug==2.1.2
+werkzeug
     # via tensorboard
-wheel==0.37.1
+wheel
     # via tensorboard
-zipp==3.8.0
+zipp
     # via importlib-metadata
